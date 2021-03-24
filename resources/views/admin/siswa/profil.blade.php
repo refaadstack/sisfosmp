@@ -35,6 +35,47 @@
                         <!-- /.card-body -->
                     </div>
                 </div>
+                <div class="col-md-8">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-header bg-danger text-white">
+                                Nilai Mata Pelajaran
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Mata Pelajaran</th>
+                                            <th scope="col">Nilai</th>
+                                            <th scope="col">Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Bahasa Indonesia</td>
+                                            <td>75</td>
+                                            <td>Tuntas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Bahasa Inggris</td>
+                                            <td>89</td>
+                                            <td>Tuntas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Matematika</td>
+                                            <td>67</td>
+                                            <td>Tidak Tuntas</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
         </div>   

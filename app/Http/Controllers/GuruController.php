@@ -38,6 +38,16 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama'           => 'required',
+            'nip'           => 'required|unique:gurus,nip,',
+            'jeniskelamin'   => 'required',
+            'nuptk'           => 'required|unique:gurus,nuptk',
+            'tempatlahir'    => 'required',
+            'tanggallahir'   => 'required|date',
+            'email'          => 'required|unique:gurus,email', 
+        ]);
+
         $user = new User;
         $user->role = 'guru';
         $user->name = $request->nama;
@@ -92,6 +102,7 @@ class GuruController extends Controller
             'tempatlahir'    => 'required',
             'tanggallahir'   => 'required|date',
             'email'          => 'required|unique:gurus,email,'.$id,
+            'avatar'         => 'mimes:jpeg,png,jpg',  
         ]);
 
         $guru = Guru::find($id);

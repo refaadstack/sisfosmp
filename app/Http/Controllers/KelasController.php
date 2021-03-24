@@ -57,7 +57,9 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-        //
+        $kelas = Kelas::paginate(5);
+        $kelas2 = Kelas::find($id);
+        return view('admin.kelas.show',compact(['kelas','kelas2']));
     }
 
     /**

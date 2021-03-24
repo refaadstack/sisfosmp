@@ -50,7 +50,7 @@ class SiswaController extends Controller
             'tempatlahir'    => 'required',
             'tanggallahir'   => 'required|date',
             'agama'          => 'required',
-            'email'          => 'required|unique:siswas,email',
+            'email'          => 'required|unique:siswas,email', 
         ]);
 
         $user = new User;
@@ -110,6 +110,7 @@ class SiswaController extends Controller
             'tanggallahir'   => 'required|date',
             'agama'          => 'required',
             'email'          => 'required|unique:siswas,email,'.$id,
+            'avatar'         => 'mimes:jpeg,png,jpg',
         ]);
 
         $siswa = Siswa::find($id);

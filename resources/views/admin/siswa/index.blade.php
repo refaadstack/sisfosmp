@@ -20,6 +20,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Nama</th>
                             <th>NIPD</th>
                             <th>Jenis Kelamin</th>
@@ -34,6 +35,7 @@
                     <tbody>
                       @foreach ($data as $siswa)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td class="text-capitalize"><a href="{{ route('siswa.profile',$siswa->id) }}">{{ $siswa->nama }}</a></td>
                             <td>{{ $siswa->nipd }}</td>
                             <td>{{ $siswa->jeniskelamin }}</td>
@@ -285,23 +287,23 @@
   <script>
     
     // Disable form submissions if there are invalid fields
-    (function() {
-      'use strict';
-      window.addEventListener('load', function() {
-        // Get the forms we want to add validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
+    // (function() {
+    //   'use strict';
+    //   window.addEventListener('load', function() {
+    //     // Get the forms we want to add validation styles to
+    //     var forms = document.getElementsByClassName('needs-validation');
+    //     // Loop over them and prevent submission
+    //     var validation = Array.prototype.filter.call(forms, function(form) {
+    //       form.addEventListener('submit', function(event) {
+    //         if (form.checkValidity() === false) {
+    //           event.preventDefault();
+    //           event.stopPropagation();
+    //         }
+    //         form.classList.add('was-validated');
+    //       }, false);
+    //     });
+    //   }, false);
+    // })();
        
     </script>
     

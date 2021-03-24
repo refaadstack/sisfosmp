@@ -20,6 +20,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th> No</th>
                             <th >Nama Kelas</th>
                             <th >Wali Kelas</th>
                             <th >Aksi</th>
@@ -28,10 +29,12 @@
                     <tbody>
                       @foreach ($kelas as $kelas) 
                         <tr>
-                            <td class="text-capitalize">{{ $kelas->namakelas }}</td>
+                            <td style="width: 20px">{{ $loop->iteration }}</td>
+                            <td class="text-capitalize"><a href="{{ route('kelas.show',$kelas->id) }}">{{ $kelas->namakelas }}</a></td>
                             <td class="text-capitalize">{{ $kelas->walikelas }}</td>
                             <td>
                               <a href="#edit{{$kelas->id}}" class="btn btn-warning btn-sm text-center" data-toggle="modal">Edit</a>
+                              <a href="{{ route('kelas.show',$kelas->id) }}" class="btn btn-success btn-sm text-center">Details</a>
                             </td>                      
                         </tr>
                         {{-- modalEdit  --}}
