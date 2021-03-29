@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Kelas;
+use App\Mapel;
 use App\Siswa;
 use App\User;
 use Illuminate\Http\Request;
@@ -76,8 +77,9 @@ class SiswaController extends Controller
     public function profile($id)
     {
         $kelas = Kelas::all(); 
+        $matapelajaran = Mapel::all();
         $siswa = Siswa::find($id);
-        return view ('admin.siswa.profil',compact(['siswa','kelas']));
+        return view ('admin.siswa.profil',compact(['siswa','kelas','matapelajaran']));
     }
 
     /**
@@ -139,5 +141,16 @@ class SiswaController extends Controller
         $siswa->delete();
 
         return back()->withInfo('Data sudah dihapus');
+    }
+    public function addnilai(Request $request, $idsiswa){
+        $siswa=\App\Siswa::find($idsiswa);
+
+        if($siswa->mapel()->where('mapel_id',$request->mapel)->exists()){
+            return redirect('siswa/'.$idsiswa.'/profile')->withError('Data sudah ada!!');
+        }
+
+        $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai]);
+        // ['nilai'=>$request->nilai]);
+        return redirect('siswa/'.$idsiswa.'/profile')->withInfo('Data sudah ditambah');
     }
 }

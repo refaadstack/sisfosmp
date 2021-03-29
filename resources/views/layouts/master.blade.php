@@ -40,8 +40,9 @@
 
             <!-- Main Content -->
             @include('layouts.navbar')
-
-            @include('layouts.info')
+            <div class="container">
+                @include('layouts.info')
+            </div>
                 <!-- Begin Page Content -->
                     @yield('content')
                 <!-- /.container-fluid -->

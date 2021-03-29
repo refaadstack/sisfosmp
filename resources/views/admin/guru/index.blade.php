@@ -8,7 +8,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-dark">Table Siswa</h6> 
+            <h6 class="m-0 font-weight-bold text-dark">Table Guru</h6> 
             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#tambah">
               + Tambah Data
             </button>     

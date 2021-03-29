@@ -21,14 +21,14 @@
                   </tr>
               </thead>
               <tbody> 
+                @foreach ($kelas2->siswa as $siswa)    
                   <tr>
-                    @foreach ($kelas2->siswa as $siswa)    
                     <td style="width: 10%">{{ $loop->iteration }}</td>
                     <td class="text-capitalize" style="width: 40%">{{ $siswa->nama }}</td>
                     <td class="text-capitalize">{{ $siswa->nisn }}</td>
                     <td>{{ $siswa->jeniskelamin }}</td>
-                    @endforeach
                   </tr>
+                  @endforeach
                   
               </tbody>
           </table>

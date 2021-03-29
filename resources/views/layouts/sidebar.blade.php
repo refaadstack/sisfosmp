@@ -56,7 +56,7 @@
                 <h6 class="collapse-header">Data</h6>
                 <a class="collapse-item" href="{{ route('siswa.index') }}">Siswa</a>
                 <a class="collapse-item" href="{{ route('guru.index') }}">Guru</a>
-                <a class="collapse-item" href="#">Mata Pelajaran</a>
+                <a class="collapse-item" href="{{ route('mapel.index') }}">Mata Pelajaran</a>
                 <a class="collapse-item" href="#">Jurusan</a>
                 <a class="collapse-item" href="{{ route('kelas.index') }}">Kelas</a>
             </div>
