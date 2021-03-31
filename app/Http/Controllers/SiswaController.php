@@ -79,7 +79,18 @@ class SiswaController extends Controller
         $kelas = Kelas::all(); 
         $matapelajaran = Mapel::all();
         $siswa = Siswa::find($id);
-        return view ('admin.siswa.profil',compact(['siswa','kelas','matapelajaran']));
+
+        $categories = [];
+        $data =[];
+
+        foreach($matapelajaran as $mp){
+            if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
+                $categories[]= $mp->nama;
+                $data[]= $siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()->pivot->nilai;
+            }
+        }
+
+        return view ('admin.siswa.profil',compact(['siswa','kelas','matapelajaran','categories','data']));
     }
 
     /**
