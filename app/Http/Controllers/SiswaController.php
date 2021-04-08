@@ -154,6 +154,12 @@ class SiswaController extends Controller
         return back()->withInfo('Data sudah dihapus');
     }
     public function addnilai(Request $request, $idsiswa){
+
+        $request->validate([
+            'mapel' => 'required',
+            'nilai' => 'required|max:3'
+        ]);
+
         $siswa=\App\Siswa::find($idsiswa);
 
         if($siswa->mapel()->where('mapel_id',$request->mapel)->exists()){

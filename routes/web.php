@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\KelasController;
+use App\Jadwal;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,6 +38,7 @@ Route::group(['middleware'=>['auth','checkrole:admin,guru']],function(){
     route::get('/mapel','MapelController@index')->name('mapel.index');
     route::post('/mapel/store','MapelController@store')->name('mapel.store');
     route::put('/mapel/{id}','MapelController@update')->name('mapel.update');
+    route::resource('/jadwal','JadwalController');
 
 });
 Route::group(['middleware'=>'auth','checkrole:guru'],function(){

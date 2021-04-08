@@ -34,7 +34,7 @@ class MapelController extends Controller
         $request->validate([
             'kode' =>'required|unique:mapels,kode,'.$id,
             'nama' => 'required|unique:mapels,nama,'.$id,
-            'semester' => 'required|unique:mapels,semester,'.$id
+            'semester' => 'required',
             ]);
 
         $mapel = Mapel::find($id);

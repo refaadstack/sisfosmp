@@ -88,7 +88,7 @@
                                             </div>
                                             <div class="modal-body">
                                               <div class="modal-body">
-                                                <form action="/siswa/{{ $siswa->id }}/addnilai" method="POST" class="needs-validation" novalidate>
+                                                <form action="/siswa/{{ $siswa->id }}/addnilai" method="POST">
                                                   {{ csrf_field() }}
                                                     <div class="form-group">
                                                         <label for="mapel">Pilih Mata Pelajaran</label>
@@ -101,7 +101,8 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="nilai">Nilai</label>
-                                                        <input type="number" name="nilai" class="form-control" placeholder="Masukkan angka">
+                                                        <input type="number" min="0" max="100" name="nilai" class="form-control"/>
+                                                        {{-- <input type="number"  placeholder="Masukkan angka" min="0" max="100"> --}}
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                   </form>
