@@ -2,7 +2,8 @@
 @section('title', 'Dashboard | SMKN SPP MERANGIN')
 @section('content')
     <div class="container-fluid">
-        <div class="row" style="margin-bottom: 20px">
+        <h5 style="margin-bottom: 3rem">Selamat datang {{ Auth::user()->name }}</h5>
+        <div class="row">
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
@@ -11,7 +12,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Jumlah siswa</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $siswa->count() }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $siswa }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -29,7 +30,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Jumlah Guru</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $guru->count() }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $guru}}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -48,7 +49,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                     Jumlah Kelas</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $kelas->count() }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $kelas }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-home fa-2x text-gray-300"></i>
@@ -64,11 +65,11 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Pending Requests</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                    Mata Pelajaran</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $mapel }}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                <i class="fas fa-book fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -76,12 +77,15 @@
             </div>
         </div>
         {{-- card --}}
-        <div class="card border-left-danger" style="margin-bottom: 100px">
-            <h5 class="card-header bg-danger text-center text-white">PENGUMUMAN</h5>
-            <div class="card-body">                            
-                <h5 class="card-title">{{ $pengumuman->judul }}</h5>
-                <p class="card-text text-justify">{!! $pengumuman->isi !!}</p>
-            </div>
-          </div>
+        
+                <div class="col-md-12 col">
+                    <div class="card shadow" style="margin-bottom: 100px">
+                        <h5 class="card-header bg-danger text-center text-white">PENGUMUMAN</h5>
+                        <div class="card-body">                            
+                            <h5 class="card-title">{{ $pengumuman->judul }}</h5>
+                            <p class="card-text text-justify">{!! $pengumuman->isi !!}</p>
+                        </div>
+                    </div>
+                </div>
     </div>    
 @endsection

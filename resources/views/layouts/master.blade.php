@@ -23,7 +23,7 @@
     <link href="{{ asset('') }}assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    @yield('head')
 </head>
 
 <body id="page-top">

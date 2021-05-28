@@ -79,7 +79,7 @@ class SiswaController extends Controller
         $kelas = Kelas::all(); 
         $matapelajaran = Mapel::all();
         $siswa = Siswa::find($id);
-
+        $mapel = Mapel::find($id);
         $categories = [];
         $data =[];
 
@@ -90,7 +90,7 @@ class SiswaController extends Controller
             }
         }
 
-        return view ('admin.siswa.profil',compact(['siswa','kelas','matapelajaran','categories','data']));
+        return view ('admin.siswa.profil',compact(['siswa','kelas','matapelajaran','categories','data','mapel']));
     }
 
     /**
@@ -169,5 +169,17 @@ class SiswaController extends Controller
         $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai]);
         // ['nilai'=>$request->nilai]);
         return redirect('siswa/'.$idsiswa.'/profile')->withInfo('Data sudah ditambah');
+    }
+    public function updatenilai(Request $request,$idsiswa){
+        $siswa=\App\Siswa::find($idsiswa);
+        $siswa->mapel()->updateExistingPivot($request->mapel,['nilai' => $request->nilai]);
+        // dd($request->all());
+        return redirect('siswa/'.$idsiswa.'/profile')->withInfo('Data sudah diupdate!');
+    }
+    public function deletenilai($idsiswa, $idmapel){
+        $siswa = Siswa::find($idsiswa);
+        $siswa->mapel()->detach($idmapel);
+        return redirect()->back()->with('sukses','Data sudah dihapus');
+
     }
 }

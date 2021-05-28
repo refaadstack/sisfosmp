@@ -68,15 +68,83 @@
                                         <tr>
                                             <td>{{ $obj->kode }}</td>
                                             <td>{{ $obj->nama }}</td>
-                                            <td>{{ $obj->semester }}</td>
+                                            <td>{{  $obj->semester  }}</td>
                                             <td>{{ $obj->pivot->nilai }}</td>
                                             <td>
-                                                <a href="#edit" class="btn btn-warning btn-sm" data-toggle="modal">Edit</a>
-                                                <a href="#delete" class="btn btn-danger btn-sm" data-toggle="modal">Delete</a>
+                                                <a href="#edit{{ $obj->id }}" class="btn btn-warning btn-sm" data-toggle="modal">Edit</a>
+                                                <a href="#delete{{ $obj->id }}" class="btn btn-danger btn-sm" data-toggle="modal">Delete</a>
                                             </td>
                                         </tr>
+
+                                        {{-- modaledit --}}
+                                        <div class="modal fade" id="edit{{ $obj->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit nilai {{ $obj->nama }}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/siswa/{{ $siswa->id }}/updatenilai" method="POST">
+                                                        {{ csrf_field() }}
+                                                        {{-- {{method_field('put')}} --}}
+                                                        <div class="form-group" hidden>
+                                                            <label for="mapel">Pilih Mata Pelajaran</label>
+                                                            <select class="form-control" id="mapel" name="mapel" required>
+                                                                <option value="" selected disabled hidden>Pilih Mata Pelajaran</option>
+                                                                @foreach ($matapelajaran as $mp)
+                                                                <option class="text-capitalize text-dark" value="{{ $mp->id }}"  @if($obj->id == $mp->id) selected @endif>{{ $mp->nama }}</option>    
+                                                                @endforeach
+                                                            </select> 
+                                                        </div>   
+                                                        <div class="form-group">
+                                                                <label for="nilai">Nilai</label>
+                                                                <input type="number" min="0" max="100" name="nilai" class="form-control" value="{{ $obj->pivot->nilai }}"/>
+                                                                {{-- <input type="number"  placeholder="Masukkan angka" min="0" max="100"> --}}
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                          {{-- end Modal edit --}}
+
+                                        {{-- modal Hapus --}}
+                                        <div class="modal fade" id="delete{{ $obj->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Hapus {{ $obj->nama }}</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <p>Anda yakin ingin menghapus data ini {{ $obj->nama }}</p>
+                                                        <form action="/siswa/{{ $siswa->id }}/{{ $obj->id }}/deletenilai" method="POST">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('delete') }}
+                                                            <div class="form-group">
+                    
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-danger">Konfirmasi Hapus</button>
+                                                        </form>
+                                                       </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        {{-- end modal hapus --}}
+
                                         @endforeach
                                     </tbody>
+                                    {{-- modal tambah --}}
                                     <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                           <div class="modal-content">
@@ -114,6 +182,7 @@
                                           </div>
                                         </div>
                                       </div>
+                                      {{-- end modal tambah --}}
                                 </table>
                             </div>
                         </div>
@@ -132,6 +201,7 @@
     
 @endsection
 @section('javascript')
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
 
@@ -173,5 +243,6 @@ Highcharts.chart('chartNilai', {
 
     }]
 });
+
 </script>
 @endsection

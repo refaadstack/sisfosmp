@@ -23,8 +23,8 @@
               <tbody> 
                 @foreach ($kelas2->siswa as $siswa)    
                   <tr>
-                    <td style="width: 10%">{{ $loop->iteration }}</td>
-                    <td class="text-capitalize" style="width: 40%">{{ $siswa->nama }}</td>
+                    <td style="width: 5%">{{ $loop->iteration }}</td>
+                    <td class="text-capitalize" style="width: 40%" ><a href="{{ route('siswa.profile',$siswa->id) }}">{{ $siswa->nama }}</a></td>
                     <td class="text-capitalize">{{ $siswa->nisn }}</td>
                     <td>{{ $siswa->jeniskelamin }}</td>
                   </tr>

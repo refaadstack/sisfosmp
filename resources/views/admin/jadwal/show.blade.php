@@ -1,6 +1,10 @@
 @extends('layouts.master')
 @section('title','Jadwal')
+
+@section('css')
+
 @section('content')
+
 
 <div class="container-fluid">
   <!-- Page Heading -->
@@ -61,7 +65,7 @@
                                   <select class="form-control" name="kelas_id" required>
                                       <option value="" selected disabled hidden>Pilih Kelas</option>
                                       @foreach ($kelas2 as $kelas)
-                                      <option class="text-capitalize" value="{{ $kelas->id}}" @if ($kelas->id == $kelas->id)  selected @endif>{{ $kelas->namakelas }}</option>    
+                                      <option class="text-capitalize" value="{{ $kelas->id}}" @if ($data->kelas_id == $kelas->id)  selected @endif>{{ $kelas->namakelas }}</option>    
                                       @endforeach
                                   </select> 
                                   <div class="valid-feedback">Valid.</div>
@@ -84,21 +88,21 @@
 
                                 <div class="form-group">
                                  <label for="mapel_id">Pilih Mata Pelajaran</label>
-                                 <select class="form-control" name="mapel_id" required>
+                                 <select class="form-control" name="mapel_id" id="mapel_id" required>
                                    <option value="" selected disabled hidden>Pilih Mata pelajaran</option>
-                                   @foreach ($mapel as $data)
-                                   <option class="text-capitalize" value="{{ $data->id}}" @if ($jadwal->mapel_id == $data->id)  selected @endif>{{ $data->nama }}</option>    
+                                   @foreach ($mapel as $mpl)
+                                   <option class="text-capitalize" value="{{ $mpl->id}}" @if ($data->mapel_id == $mpl->id)  selected @endif>{{ $mpl->nama }}</option>    
                                    @endforeach
                                   </select> 
                                   <div class="valid-feedback">Valid.</div>
                                   <div class="invalid-feedback">Kelas tidak boleh kosong!</div>
                                 </div>  
-                                <div class="form-group">
+                                <div class="form-group" id="guru_id">
                                   <label for="guru_id">Pilih Guru Mata Pelajaran </label>
-                                  <select class="form-control" name="guru_id" required>
+                                  <select class="form-control" name="guru_id"  required>
                                       <option value="" selected disabled hidden>Pilih Guru Mata Pelajaran</option>
                                       @foreach ($guru as $gmp)
-                                      <option class="text-capitalize" value="{{ $gmp->id}}" @if ($gmp->id == $gmp->id)  selected @endif>{{ $gmp->nama }}</option>    
+                                      <option class="text-capitalize" value="{{ $gmp->id}}" @if ($data->guru_id == $gmp->id)  selected @endif>{{ $gmp->nama }}</option>    
                                       @endforeach
                                   </select> 
                                   <div class="valid-feedback">Valid.</div>
@@ -108,11 +112,11 @@
                                   <div class="row">
                                     <div class="col">
                                       <label for="jam_mulai">Jam Mulai</label>
-                                      <input type="time" class="form-control"  placeholder="Masukkan jam mulai" name="jam_mulai" required >
+                                      <input type="time" class="form-control"  placeholder="Masukkan jam mulai" name="jam_mulai" required value="{{ $data->jam_mulai }}">
                                     </div>
                                     <div class="col">
                                       <label for="jam_selesai">Jam Selesai</label>
-                                      <input type="time" class="form-control"  placeholder="Masukkan jam selesai" name="jam_selesai" required>
+                                      <input type="time" class="form-control"  placeholder="Masukkan jam selesai" name="jam_selesai" required value="{{ $data->jam_selesai }}">
                                     </div>
                                   </div>
                                   
@@ -141,29 +145,3 @@
 
 @endsection
 
-
-{{-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-  <thead>
-      <tr>
-          <th>No</th>
-          <th >Mata Pelajaran</th>
-          <th >Hari</th>
-          <th>Jam Pelajaran</th>
-          
-      </tr>
-  </thead>
-  <tbody> 
-    @foreach ($jadwal as $data)    
-      <tr>
-        <td style="width: 10%">{{ $loop->iteration }}</td>
-        <td>
-             <h6 class="card-title">{{ $data->mapel->nama }}</h6>
-             <p class="card-text"><small class="text-muted">{{ $data->guru->nama }}</small></p>
-         </td>
-        <td class="text-capitalize">{{ $data->hari}}</td>
-        <td>{{ $data->jam_mulai }} WIB - {{ $data->jam_selesai }} WIB</td>
-      </tr>
-      @endforeach
-      
-  </tbody>
-</table> --}}

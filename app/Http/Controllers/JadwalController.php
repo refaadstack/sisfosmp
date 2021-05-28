@@ -46,7 +46,7 @@ class JadwalController extends Controller
         $jadwal = new Jadwal();
         $jadwal->create($request->all());
         // dd($request->all());
-        return back()->with('info','Sukses');
+        return back()->with('info','Sukses, jadwal sudah ditambahkan!');
     }
 
     /**
@@ -76,7 +76,7 @@ class JadwalController extends Controller
      */
     public function edit(Jadwal $jadwal)
     {
-         return view('admin.jadwal.edit');
+         
     }
     
 
@@ -87,9 +87,11 @@ class JadwalController extends Controller
      * @param  \App\Jadwal  $jadwal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jadwal $jadwal)
+    public function update(Request $request, $id)
     {
-       //
+       $jadwal = Jadwal::find($id);
+       $jadwal->update($request->all());
+       return back()->with('info','Sukses, data sudah diupdate!');
     }
     /**
      * Remove the specified resource from storage.

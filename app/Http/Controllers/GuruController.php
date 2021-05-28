@@ -40,9 +40,9 @@ class GuruController extends Controller
     {
         $request->validate([
             'nama'           => 'required',
-            'nip'           => 'required|unique:gurus,nip,',
+            'nip'           => 'nullable|unique:gurus,nip,',
             'jeniskelamin'   => 'required',
-            'nuptk'           => 'required|unique:gurus,nuptk',
+            'nuptk'           => 'nullable|unique:gurus,nuptk',
             'tempatlahir'    => 'required',
             'tanggallahir'   => 'required|date',
             'email'          => 'required|unique:gurus,email', 
@@ -96,9 +96,9 @@ class GuruController extends Controller
     {
         $request->validate([
             'nama'           => 'required',
-            'nip'            => 'required|unique:gurus,nip,'.$id,
+            'nip'            => 'nullable|unique:gurus,nip,'.$id,
             'jeniskelamin'   => 'required',
-            'nuptk'          => 'required|unique:gurus,nuptk,'.$id,
+            'nuptk'          => 'nullable|unique:gurus,nuptk,'.$id,
             'tempatlahir'    => 'required',
             'tanggallahir'   => 'required|date',
             'email'          => 'required|unique:gurus,email,'.$id,

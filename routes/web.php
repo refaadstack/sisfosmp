@@ -30,8 +30,11 @@ Route::group(['middleware'=>['auth','checkrole:admin,guru']],function(){
     route::post('/siswa/store','SiswaController@store')->name('siswa.store');
     route::put('siswa/{id}','SiswaController@update')->name('siswa.update');
     route::delete('siswa/{id}','SiswaController@destroy')->name('siswa.destroy');
-    route::get('siswa/{id}/profile','SiswaController@profile')->name('siswa.profile');
-    route::post('siswa/{id}/addnilai','SiswaController@addnilai');
+    route::get('/siswa/{id}/profile','SiswaController@profile')->name('siswa.profile');
+    route::post('/siswa/{id}/addnilai','SiswaController@addnilai');
+    route::post('/siswa/{id}/updatenilai','SiswaController@updatenilai');
+    route::delete('/siswa/{id}/{idmapel}/deletenilai','SiswaController@deletenilai');
+
     route::resource('/kelas','KelasController');
     route::resource('/guru','GuruController');
     route::resource('/pengumuman','PengumumanController');

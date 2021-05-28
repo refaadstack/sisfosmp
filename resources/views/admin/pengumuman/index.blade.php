@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('title','PENGUMUMAN')
 @section('content')
-<body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2"></div>
@@ -26,5 +25,4 @@
     <script>
            CKEDITOR.replace('isi')
     </script>
-</body>
 @endsection

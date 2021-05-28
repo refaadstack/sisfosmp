@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Guru;
 use App\Kelas;
+use App\Mapel;
 use App\Pengumuman;
 use App\Siswa;
 use Illuminate\Http\Request;
@@ -17,10 +18,12 @@ class DashboardController extends Controller
     }
 
     public function index(){
-        $siswa= Siswa::all();
-        $kelas = Kelas::all();
-        $guru =Guru::all();
+        $siswa= Siswa::count();
+        $kelas = Kelas::count();
+        $guru =Guru::count();
+        $mapel= Mapel::count();
+        // dd($mapel);
         $pengumuman = Pengumuman::latest()->first();
-        return view('dashboard.index',compact(['siswa','guru','kelas','pengumuman']));
+        return view('dashboard.index',compact(['siswa','guru','kelas','pengumuman','mapel']));
     }
 }

@@ -37,52 +37,6 @@
                               <a href="{{ route('jadwal.show',$kelas->id) }}" class="btn btn-success btn-sm text-center">Details</a>
                             </td>                      
                         </tr>
-                        {{-- modalEdit  --}}
-                          <div class="modal" id="edit{{$kelas->id}}">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                          
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                  <h4 class="modal-title">Edit Data kelas</h4>
-                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                          
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <form action="{{ route('kelas.update',$kelas->id) }}" method="POST"class="needs-validation" novalidate role="form" enctype="multipart/form-data">
-                                        {{ csrf_field() }}
-                                        {{ method_field('put') }}
-                                        <div class="form-group">
-                                          <label for="namakelas">nama kelas</label>
-                                          <input type="text" class="form-control"  placeholder="Masukkan namakelas" name="namakelas" value="{{ $kelas->namakelas }}" required>
-                                          <div class="valid-feedback">Valid.</div>
-                                          <div class="invalid-feedback">nama kelas tidak boleh kosong!</div>
-                                        </div>
-                                        <div class="form-group">
-                                          <label for="agama">Pilih Wali kelas</label>
-                                          <select class="form-control" name="walikelas" required>
-                                              <option value="" selected disabled hidden>Pilih Wali kelas</option>
-                                              @foreach ($guru as $walikelas)
-                                              <option class="text-capitalize" value="{{ $walikelas->nama}}" @if($walikelas->nama == $walikelas->nama) selected @endif>{{ $walikelas->nama }}</option>    
-                                              @endforeach
-                                          </select> 
-                                          <div class="valid-feedback">Valid.</div>
-                                          <div class="invalid-feedback">Kelas tidak boleh kosong!</div>
-                                       </div>           
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                      </form>
-                                </div> 
-                          
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-                          
-                              </div>
-                            </div>
-                        </div>
-
                         {{-- start modal delete --}} 
                         {{-- <div class="modal fade" id="delete{{$kelas->id}}">
                           <div class="modal-dialog">
@@ -117,7 +71,7 @@
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Tambah Data kelas</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">Tambah data jadwal</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -164,7 +118,7 @@
                                       <div class="valid-feedback">Valid.</div>
                                       <div class="invalid-feedback">Kelas tidak boleh kosong!</div>
                                     </div>  
-                                    <div class="form-group">
+                                    <div class="form-group" style="position: relative">
                                       <label for="guru_id">Pilih Guru Mata Pelajaran </label>
                                       <select class="form-control" name="guru_id" required>
                                           <option value="" selected disabled hidden>Pilih Guru Mata Pelajaran</option>
@@ -185,8 +139,7 @@
                                           <label for="jam_selesai">Jam Selesai</label>
                                           <input type="time" class="form-control"  placeholder="Masukkan jam selesai" name="jam_selesai" required>
                                         </div>
-                                      </div>
-                                      
+                                      </div> 
                                     </div>                      
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                   </form>
