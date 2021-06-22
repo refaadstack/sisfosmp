@@ -29,5 +29,16 @@ class Siswa extends Model
 
     }
 
+    public function rata(){
+        // $total= 0;
+        // $hitung = 0;
+        // foreach($this->mapel as $mapel){
+        //     $total +=$mapel->pivot->nilai;
+        //     $hitung++;
+        // }
+
+        return 'test';
+    }
+
 
 }

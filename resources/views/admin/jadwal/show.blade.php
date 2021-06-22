@@ -25,7 +25,9 @@
                       <th >Mata Pelajaran</th>
                       <th >Hari</th>
                       <th>Jam Pelajaran</th>
+                      @if (auth()->user()->role == 'admin')      
                       <th>Action</th>
+                      @endif
                       
                   </tr>
               </thead>
@@ -39,10 +41,12 @@
                      </td>
                     <td class="text-capitalize">{{ $data->hari}}</td>
                     <td>{{ $data->jam_mulai }} WIB - {{ $data->jam_selesai }} WIB</td>
+                    @if (auth()->user()->role == 'admin')
                     <td>
                         <a href="#edit{{$data->id}}" class="btn btn-warning btn-sm text-center" data-toggle="modal">Edit</a>
                         <a href="{{ route('jadwal.show',$kelas->id) }}" class="btn btn-success btn-sm text-center">Details</a>
                     </td>
+                    @endif
                   </tr>
                   {{-- modal edit jadwal --}}
                   <div class="modal" id="edit{{$data->id}}">

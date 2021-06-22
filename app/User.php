@@ -39,9 +39,9 @@ class User extends Authenticatable
 
 
     public function siswa(){
-        return $this->belongsTo('\App\Siswa');
+        return $this->hasOne('\App\Siswa');
     }
     public function guru(){
-        return $this->belongsTo('\App\Siswa');
+        return $this->hasOne('\App\Guru');
     }
 }

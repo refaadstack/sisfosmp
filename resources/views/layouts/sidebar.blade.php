@@ -38,6 +38,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Buat Pengumuman</h6>
                 <a class="collapse-item" href="/pengumuman">Buat Pengumuman</a>
+                <a class="collapse-item" href="{{ route('changepassword') }}">Ubah Password</a>
             </div>
         </div>
     </li>
@@ -64,22 +65,59 @@
     </li>
     @endif
     {{-- endadmin --}}
+
+    {{-- guru --}}
+    @if(auth()->user()->role == 'guru')
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Pengumuman</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Buat Pengumuman</h6>
+                <a class="collapse-item" href="/pengumuman">Buat Pengumuman</a>
+                <a class="collapse-item" href="{{ route('changepassword') }}">Ubah Password</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+  
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-table"></i>
+            <span>Master Data</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Data</h6>
+                <a class="collapse-item" href="{{ route('siswa.index') }}">Siswa</a>
+                <a class="collapse-item" href="{{ route('jadwal.index') }}">Jadwal</a>
+            </div>
+        </div>
+    </li>
+    @endif
+    {{-- endguru --}}
+
     {{-- start siswa --}}
     @if(auth()->user()->role == 'siswa')
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-graduation-cap"></i>
-            <span>Nilai</span>
+            <span>Menu</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Mata Pelajaran:</h6>
-                <a class="collapse-item" href="#">Matematika</a>
-                <a class="collapse-item" href="#">IPA</a>
-                <a class="collapse-item" href="#">IPS</a>
-                <a class="collapse-item" href="#">Other</a>
+                <h6 class="collapse-header">Menu</h6>
+                <a class="collapse-item" href="{{ route('profilsaya') }}">Profil</a>
+                <a class="collapse-item" href="{{ route('changepassword') }}">Ubah Password</a>
             </div>
         </div>
     </li>

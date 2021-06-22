@@ -6,6 +6,8 @@ use App\Kelas;
 use App\Mapel;
 use App\Siswa;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -51,6 +53,7 @@ class SiswaController extends Controller
             'tempatlahir'    => 'required',
             'tanggallahir'   => 'required|date',
             'agama'          => 'required',
+            'kelas_id'       => 'required',
             'email'          => 'required|unique:siswas,email', 
         ]);
 
@@ -181,5 +184,35 @@ class SiswaController extends Controller
         $siswa->mapel()->detach($idmapel);
         return redirect()->back()->with('sukses','Data sudah dihapus');
 
+    }
+
+    public function cetak_rapor_pdf($id)
+    {
+        
+        $siswa = Siswa::find($id);
+        $today = \Carbon\Carbon::now()->format('j F Y');
+        // dd($siswa);
+ 
+    	$pdf = PDF::loadView('admin.siswa.rapor_pdf',['siswa'=>$siswa,'today'=>$today]);
+    	return $pdf->stream('rapor.pdf');
+
+
+    }
+    public function profilsaya()
+    {
+        $kelas = Kelas::all(); 
+        $matapelajaran = Mapel::all();
+        $siswa = auth()->user()->siswa;
+        $categories = [];
+        $data =[];
+
+        foreach($matapelajaran as $mp){
+            if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
+                $categories[]= $mp->nama;
+                $data[]= $siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()->pivot->nilai;
+            }
+        }
+
+        return view ('siswa.profilsaya',compact(['siswa','kelas','matapelajaran','categories','data',]));
     }
 }

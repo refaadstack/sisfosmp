@@ -132,5 +132,11 @@ class GuruController extends Controller
         return back()->withInfo('Data Guru berhasil dihapus');
     }
 
+    public function profilguru(){
+
+        $guru = auth()->user()->guru;
+        return view ('guru.profilguru', compact(['guru']));
+    }
+
     
 }

@@ -46,12 +46,14 @@
                         <div class="card">
                             <div class="card-header bg-danger text-white">
                                 Nilai Mata Pelajaran
+                                @if (auth()->user()->role == 'admin')
                                 <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#tambah">
                                     + Tambah Data
-                                </button> 
+                                </button>
+                                @endif 
                             </div>
                             <div class="card-body">
-                                <span><a href="#" class="btn btn-success btn-sm mb-3">Cetak</a></span>
+                                <span><a href="{{ route('siswa.cetak_rapor_pdf',$siswa->id) }}" target="_blank" class="btn btn-success btn-sm mb-3">Cetak</a></span>
                                 
                                 <table class="table" id="dataTable" style="margin-top: 10px">
                                     <thead>
@@ -60,7 +62,9 @@
                                             <th scope="col">Mata Pelajaran</th>
                                             <th scope="col">Semester</th>
                                             <th scope="col">Nilai</th>
+                                            @if (auth()->user()->role == 'admin')
                                             <th scope="col">Aksi</th>
+                                            @endif 
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -70,10 +74,12 @@
                                             <td>{{ $obj->nama }}</td>
                                             <td>{{  $obj->semester  }}</td>
                                             <td>{{ $obj->pivot->nilai }}</td>
+                                            @if (auth()->user()->role == 'admin')
                                             <td>
                                                 <a href="#edit{{ $obj->id }}" class="btn btn-warning btn-sm" data-toggle="modal">Edit</a>
                                                 <a href="#delete{{ $obj->id }}" class="btn btn-danger btn-sm" data-toggle="modal">Delete</a>
                                             </td>
+                                            @endif 
                                         </tr>
 
                                         {{-- modaledit --}}

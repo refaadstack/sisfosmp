@@ -9,9 +9,11 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h5 class="m-0 font-weight-bold text-dark">JADWAL</h5> 
+            @if (auth()->user()->role == 'admin')
             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#tambah">
               + Tambah Data
-            </button>     
+            </button>    
+            @endif 
         </div>
         <div class="card-header py-6">
         </div>
@@ -23,7 +25,10 @@
                             <th> No</th>
                             <th >Nama Kelas</th>
                             <th >Wali Kelas</th>
+                            @if (auth()->user()->role == 'admin')
                             <th >Aksi</th>
+                            @endif 
+
                         </tr>
                     </thead>
                     <tbody>
@@ -32,10 +37,12 @@
                             <td style="width: 20px">{{ $loop->iteration }}</td>
                             <td class="text-capitalize"><a href="{{ route('jadwal.show',$kelas->id) }}">{{ $kelas->namakelas }}</a></td>
                             <td class="text-capitalize">{{ $kelas->walikelas }}</td>
+                            @if (auth()->user()->role == 'admin')
                             <td>
                               {{-- <a href="#edit{{$kelas->id}}" class="btn btn-warning btn-sm text-center" data-toggle="modal">Edit</a> --}}
                               <a href="{{ route('jadwal.show',$kelas->id) }}" class="btn btn-success btn-sm text-center">Details</a>
                             </td>                      
+                            @endif 
                         </tr>
                         {{-- start modal delete --}} 
                         {{-- <div class="modal fade" id="delete{{$kelas->id}}">

@@ -232,7 +232,7 @@
                                       </div>
                                     <div class="form-group">
                                         <label for="tanggallahir">Tanggal Lahir</label>
-                                        <input type="date" min="2000-12-31" max="2015-12-31" class="form-control"  placeholder="pilih tanggal lahir" name="tanggallahir" required>
+                                        <input type="date" min="2000-12-31" class="form-control"  placeholder="pilih tanggal lahir" name="tanggallahir" required>
                                         {{-- <input type="date" class="form-control"  placeholder="pilih tanggal lahir" name="tanggallahir" required> --}}
                                         <div class="valid-feedback">Valid.</div>
                                         <div class="invalid-feedback">Tanggal lahir tidak boleh kosong!</div>

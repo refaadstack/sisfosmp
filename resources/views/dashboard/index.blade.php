@@ -2,7 +2,7 @@
 @section('title', 'Dashboard | SMKN SPP MERANGIN')
 @section('content')
     <div class="container-fluid">
-        <h5 style="margin-bottom: 3rem">Selamat datang {{ Auth::user()->name }}</h5>
+        <h5 style="margin-bottom: 3rem">Selamat datang <i class="text-capitalize">{{ Auth::user()->name }}</i></h5>
         <div class="row">
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
