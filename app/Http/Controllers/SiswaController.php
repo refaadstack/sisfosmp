@@ -98,7 +98,7 @@ class SiswaController extends Controller
 
 
 
-
+        $mapelCharts = Mapel::all();
         $kelas = Kelas::all();
         $siswa = Siswa::find($id);
         $mapel = Mapel::find($id);
@@ -106,7 +106,7 @@ class SiswaController extends Controller
         $data =[];
 
 
-        foreach($matapelajaran as $mp){
+        foreach($mapelCharts as $mp){
 
 
             if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
@@ -114,6 +114,7 @@ class SiswaController extends Controller
                 $data[]= $siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()->pivot->nilai;
             }
         }
+
 
         return view ('admin.siswa.profil',compact(['siswa','kelas','matapelajaran','categories','data','mapel']));
     }
