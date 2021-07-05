@@ -26,7 +26,7 @@ class SiswaController extends Controller
         $kelass = \App\Kelas::all();
         $data = \App\Siswa::all();
         return view('admin.siswa.index', compact(['data','kelass']));
-        
+
     }
 
     /**
@@ -36,7 +36,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -56,7 +56,7 @@ class SiswaController extends Controller
             'tanggallahir'   => 'required|date',
             'agama'          => 'required',
             'kelas_id'       => 'required',
-            'email'          => 'required|unique:siswas,email', 
+            'email'          => 'required|unique:siswas,email',
         ]);
 
         $user = new User;
@@ -69,7 +69,7 @@ class SiswaController extends Controller
 
         $request->request->add(['user_id'=> $user->id]);
         Siswa::create($request->all());
-        
+
         return back()->withInfo('Data Berhasil Ditambahkan');
     }
 
@@ -81,40 +81,34 @@ class SiswaController extends Controller
      */
     public function profile($id)
     {
-    //     $kelas = Kelas::all(); 
-    //     $matapelajaran = Mapel::all();
-    //     $siswa = Siswa::find($id);
-    //     $mapel = Mapel::find($id);
-    //     $categories = [];
-    //     $data =[];
+
+        /**
+         *
+         * Disini saya cek kondisi dia guru apa bukan kalu guru saya
+         * ambil matapelajaran melalui relationship jadi saya ambil data guru yang login sekarang
+         * terus ambil relasi mapelnya
+         * kalau dia bukan guru yaudah saya get semua mapel lewat table mapel
+         */
+        if(Auth::user()->role == 'guru'){
+            $matapelajaran = Guru::with(['mapels'])->where('user_id',Auth::user()->id)->first()
+                ->mapels;
+        }else{
+            $matapelajaran = Mapel::all();
+        }
 
 
-    //     // if(Auth::user()->role == 'guru'){
-    //     //     $matapelajaran = Guru::with(['mapels'])->find(Auth::user()->id);
-               
-    //     // } else{
-            
-    //     // }
 
-    //     dd($matapelajaran);
-    //     foreach($matapelajaran as $mp){
-    //         if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
-    //             $categories[]= $mp->nama;
-    //             $data[]= $siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()->pivot->nilai;
-    //         }
-    //     }   
 
-    //     return view ('admin.siswa.profil',compact(['siswa','kelas','matapelajaran','categories','data','mapel']));
-    // }
-    $kelas = Kelas::all(); 
-        $matapelajaran = Mapel::all();
+        $kelas = Kelas::all();
         $siswa = Siswa::find($id);
         $mapel = Mapel::find($id);
         $categories = [];
         $data =[];
 
-        
+
         foreach($matapelajaran as $mp){
+
+
             if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
                 $categories[]= $mp->nama;
                 $data[]= $siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()->pivot->nilai;
@@ -132,7 +126,7 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        
+
 
     }
 
@@ -216,11 +210,11 @@ class SiswaController extends Controller
 
     public function cetak_rapor_pdf($id)
     {
-        
+
         $siswa = Siswa::find($id);
         $today = \Carbon\Carbon::now()->format('j F Y');
         // dd($siswa);
- 
+
     	$pdf = PDF::loadView('admin.siswa.rapor_pdf',['siswa'=>$siswa,'today'=>$today]);
     	return $pdf->stream('rapor.pdf');
 
@@ -228,7 +222,7 @@ class SiswaController extends Controller
     }
     public function profilsaya()
     {
-        $kelas = Kelas::all(); 
+        $kelas = Kelas::all();
         $matapelajaran = Mapel::all();
         $siswa = auth()->user()->siswa;
         $categories = [];

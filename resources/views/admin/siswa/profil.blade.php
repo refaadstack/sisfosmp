@@ -10,11 +10,11 @@
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid rounded" style="width: 200px; border-radius: 50%" src="{{$siswa->getAvatar()}}" alt="User profile picture">
                             </div>
-                
+
                         <h5 class="profile-username text-center text-capitalize">{{ $siswa->nama }}</h5>
-                
+
                         <p class="text-muted text-center">{{ $siswa->email}}</p>
-                
+
                         <ul class="list-group list-group-unbordered mb-6">
                             <li class="list-group-item">
                                 <b>NISN</b> <span class="float-right text-capitalize">{{ $siswa->nisn}}</span>
@@ -50,11 +50,11 @@
                                 <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#tambah">
                                     + Tambah Data
                                 </button>
-                                @endif 
+                                @endif
                             </div>
                             <div class="card-body">
                                 <span><a href="{{ route('siswa.cetak_rapor_pdf',$siswa->id) }}" target="_blank" class="btn btn-success btn-sm mb-3">Cetak</a></span>
-                                
+
                                 <table class="table" id="dataTable" style="margin-top: 10px">
                                     <thead>
                                         <tr>
@@ -64,11 +64,11 @@
                                             <th scope="col">Nilai</th>
                                             @if (auth()->user()->role == 'admin')
                                             <th scope="col">Aksi</th>
-                                            @endif 
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($siswa->mapel as $obj)    
+                                        @foreach ($siswa->mapel as $obj)
                                         <tr>
                                             <td>{{ $obj->kode }}</td>
                                             <td>{{ $obj->nama }}</td>
@@ -79,7 +79,7 @@
                                                 <a href="#edit{{ $obj->id }}" class="btn btn-warning btn-sm" data-toggle="modal">Edit</a>
                                                 <a href="#delete{{ $obj->id }}" class="btn btn-danger btn-sm" data-toggle="modal">Delete</a>
                                             </td>
-                                            @endif 
+                                            @endif
                                         </tr>
 
                                         {{-- modaledit --}}
@@ -101,10 +101,10 @@
                                                             <select class="form-control" id="mapel" name="mapel" required>
                                                                 <option value="" selected disabled hidden>Pilih Mata Pelajaran</option>
                                                                 @foreach ($matapelajaran as $mp)
-                                                                <option class="text-capitalize text-dark" value="{{ $mp->id }}"  @if($obj->id == $mp->id) selected @endif>{{ $mp->nama }}</option>    
+                                                                <option class="text-capitalize text-dark" value="{{ $mp['id'] }}"  @if($obj->id == $mp['id']) selected @endif>{{ $mp['nama'] }}</option>
                                                                 @endforeach
-                                                            </select> 
-                                                        </div>   
+                                                            </select>
+                                                        </div>
                                                         <div class="form-group">
                                                                 <label for="nilai">Nilai</label>
                                                                 <input type="number" min="0" max="100" name="nilai" class="form-control" value="{{ $obj->pivot->nilai }}"/>
@@ -121,6 +121,7 @@
                                           {{-- end Modal edit --}}
 
                                         {{-- modal Hapus --}}
+
                                         <div class="modal fade" id="delete{{ $obj->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
@@ -137,7 +138,7 @@
                                                             {{ csrf_field() }}
                                                             {{ method_field('delete') }}
                                                             <div class="form-group">
-                    
+
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                             <button type="submit" class="btn btn-danger">Konfirmasi Hapus</button>
                                                         </form>
@@ -145,7 +146,7 @@
                                                 </div>
                                               </div>
                                             </div>
-                                        </div>
+                                          </div>
                                         {{-- end modal hapus --}}
 
                                         @endforeach
@@ -169,22 +170,24 @@
                                                         <label for="mapel">Pilih Mata Pelajaran</label>
                                                         <select class="form-control" id="mapel" name="mapel" required>
                                                             <option value="" selected disabled hidden>Pilih Mata Pelajaran</option>
-                                                            
-                                                            {{-- <option class="text-capitalize text-dark" value="{{ $matapelajaran->id }}">{{ $matapelajaran->nama }}</option>     --}}
-                                                            
-                                                        </select> 
+
+                                                            @foreach ($matapelajaran as $mp)
+                                                            <option class="text-capitalize text-dark" value="{{$mp['id']}}">{{ $mp['nama'] }}</option>
+                                                            @endforeach
+
+                                                        </select>
                                                     </div>
                                                     @elseif (auth()->user()->role == 'guru')
                                                     <div class="form-group">
                                                         <label for="mapel">Pilih Mata Pelajaran</label>
                                                         <select class="form-control" id="mapel" name="mapel" required>
                                                             <option value="" selected disabled hidden>Pilih Mata Pelajaran</option>
-                                                            {{-- @foreach ($matapelajaran as $mp) --}}
-                                                            <option class="text-capitalize text-dark" value="{{$matapelajaran->id}}">{{ $matapelajaran->nama }}</option>    
-                                                            {{-- @endforeach --}}
-                                                        </select> 
+                                                            @foreach ($matapelajaran as $mp)
+                                                            <option class="text-capitalize text-dark" value="{{$mp['id']}}">{{ $mp['nama'] }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
-                                                    
+
                                                     @endif
                                                     <div class="form-group">
                                                         <label for="nilai">Nilai</label>
@@ -207,17 +210,17 @@
                         </div>
                         <div class="card mt-3">
                             <div id="chartNilai">
-    
+
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
-        </div>   
-    </div>     
-    
-    
+        </div>
+    </div>
+
+
 @endsection
 @section('javascript')
 

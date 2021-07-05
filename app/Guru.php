@@ -14,8 +14,14 @@ class Guru extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Karena guru bakal punya mapel jadi saya has many aja
+     * soalnya biar gak ribet pas olah ada foreach di controller
+     * karena foreach butuh array kalau bukan array entar error
+     *
+     */
     public function mapels(){
-        return $this->belongsTo(Mapel::class);
+        return $this->hasMany(Mapel::class,'id','mapel_id');
     }
 
     public function getAvatar(){
