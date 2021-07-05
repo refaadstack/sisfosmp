@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Guru;
 use App\Kelas;
 use App\Mapel;
 use App\Siswa;
@@ -9,6 +10,7 @@ use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -79,13 +81,39 @@ class SiswaController extends Controller
      */
     public function profile($id)
     {
-        $kelas = Kelas::all(); 
+    //     $kelas = Kelas::all(); 
+    //     $matapelajaran = Mapel::all();
+    //     $siswa = Siswa::find($id);
+    //     $mapel = Mapel::find($id);
+    //     $categories = [];
+    //     $data =[];
+
+
+    //     // if(Auth::user()->role == 'guru'){
+    //     //     $matapelajaran = Guru::with(['mapels'])->find(Auth::user()->id);
+               
+    //     // } else{
+            
+    //     // }
+
+    //     dd($matapelajaran);
+    //     foreach($matapelajaran as $mp){
+    //         if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
+    //             $categories[]= $mp->nama;
+    //             $data[]= $siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()->pivot->nilai;
+    //         }
+    //     }   
+
+    //     return view ('admin.siswa.profil',compact(['siswa','kelas','matapelajaran','categories','data','mapel']));
+    // }
+    $kelas = Kelas::all(); 
         $matapelajaran = Mapel::all();
         $siswa = Siswa::find($id);
         $mapel = Mapel::find($id);
         $categories = [];
         $data =[];
 
+        
         foreach($matapelajaran as $mp){
             if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
                 $categories[]= $mp->nama;

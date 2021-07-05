@@ -252,7 +252,7 @@
                                         <div class="invalid-feedback">Agama tidak boleh kosong!</div>
                                     </div>
                                     <div class="form-group">
-                                      <label for="agama">Pilih Kelas</label>
+                                      <label for="kelas_id">Pilih Kelas</label>
                                       <select class="form-control" name="kelas_id" required>
                                           <option value="" selected disabled hidden>Pilih Kelas</option>
                                           @foreach ($kelass as $kelas)

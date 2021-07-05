@@ -22,6 +22,7 @@
                         <tr>
                             <th>Nama</th>
                             <th>NIP</th>
+                            <th>Mata pelajaran</th>
                             <th>Jenis Kelamin</th>
                             <th>NUPTK</th>
                             <th>Tempat Lahir</th>
@@ -34,6 +35,7 @@
                         <tr>
                             <td class="text-capitalize"><a href="{{ route('guru.show',$guru->id) }}">{{ $guru->nama }}</a></td>
                             <td>{{ $guru->nip }}</td>
+                            <td>{{ $guru->mapel->nama }}</td>
                             <td>{{ $guru->jeniskelamin }}</td>
                             <td>{{ $guru->nuptk }}</td>
                             <td class="text-capitalize">{{ $guru->tempatlahir }}</td>
@@ -71,6 +73,17 @@
                                           <div class="valid-feedback">Valid.</div>
                                           <div class="invalid-feedback">NIP tidak boleh kosong!</div>
                                         </div>
+                                        <div class="form-group">
+                                          <label for="mapel_id">Pilih Mata Pelajaran</label>
+                                          <select class="form-control" name="mapel_id" required>
+                                              <option value="" selected disabled hidden>Pilih Mata Pelajaran</option>
+                                              @foreach ($mapels as $mapel)
+                                              <option value="{{ $mapel->id }}" @if($guru->mapel_id== $mapel->id) selected @endif>{{ $mapel->nama }}</option>    
+                                              @endforeach
+                                          </select> 
+                                          <div class="valid-feedback">Valid.</div>
+                                          <div class="invalid-feedback">Kelas tidak boleh kosong!</div>
+                                      </div>
                                         <div class="form-group">
                                             <label for="jeniskelamin">Jenis Kelamin</label>
                                             <select class="form-control" name="jeniskelamin" required>
@@ -178,6 +191,17 @@
                                       <div class="valid-feedback">Valid.</div>
                                       <div class="invalid-feedback">NIP tidak boleh kosong!</div>
                                     </div>
+                                    <div class="form-group">
+                                      <label for="mapel_id">Pilih Mata Pelajaran</label>
+                                      <select class="form-control" name="mapel_id" required>
+                                          <option value="" selected disabled hidden>Pilih Mata Pelajaran</option>
+                                          @foreach ($mapels as $mapel)
+                                          <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>    
+                                          @endforeach
+                                      </select> 
+                                      <div class="valid-feedback">Valid.</div>
+                                      <div class="invalid-feedback">Kelas tidak boleh kosong!</div>
+                                  </div>
                                     <div class="form-group">
                                         <label for="jeniskelamin">Jenis Kelamin</label>
                                         <select class="form-control" name="jeniskelamin" required>

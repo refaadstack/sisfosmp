@@ -38,7 +38,7 @@
                 <td width="100px" align="center">
                     <h5>Dinas Pendidikan Kabupaten Merangin</h5>
                     <h6>SMKN SPP Merangin</h6>
-                    <small>Jl.Inspektur marzuki</small>
+                    <small>Jalan Syeh Maulana Qori Desa Titian Teras Kecamatan Batang Mesumai</small>
                 </td>
                 <td width="50px" align="right"><img src="{{ asset('assets/img/logo.png') }}" width="100%"></td>
                 </tr>

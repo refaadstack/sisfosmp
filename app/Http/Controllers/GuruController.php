@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Guru;
+use App\Mapel;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -17,7 +18,8 @@ class GuruController extends Controller
     public function index()
     {
         $data = Guru::all();
-        return view('admin.guru.index', compact(['data']));
+        $mapels = Mapel::all();
+        return view('admin.guru.index', compact(['data','mapels']));
     }
 
     /**
@@ -42,6 +44,7 @@ class GuruController extends Controller
             'nama'           => 'required',
             'nip'           => 'nullable|unique:gurus,nip,',
             'jeniskelamin'   => 'required',
+            'mapel_id'         => 'required',
             'nuptk'           => 'nullable|unique:gurus,nuptk',
             'tempatlahir'    => 'required',
             'tanggallahir'   => 'required|date',
@@ -98,6 +101,7 @@ class GuruController extends Controller
             'nama'           => 'required',
             'nip'            => 'nullable|unique:gurus,nip,'.$id,
             'jeniskelamin'   => 'required',
+            'mapel_id'        => 'required',
             'nuptk'          => 'nullable|unique:gurus,nuptk,'.$id,
             'tempatlahir'    => 'required',
             'tanggallahir'   => 'required|date',

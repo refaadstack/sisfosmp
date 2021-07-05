@@ -46,7 +46,7 @@
                         <div class="card">
                             <div class="card-header bg-danger text-white">
                                 Nilai Mata Pelajaran
-                                @if (auth()->user()->role == 'admin')
+                                @if (auth()->user()->role == 'admin'||auth()->user()->role == 'guru')
                                 <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#tambah">
                                     + Tambah Data
                                 </button>
@@ -72,7 +72,7 @@
                                         <tr>
                                             <td>{{ $obj->kode }}</td>
                                             <td>{{ $obj->nama }}</td>
-                                            <td>{{  $obj->semester  }}</td>
+                                            <td>{{  $obj->semester }}</td>
                                             <td>{{ $obj->pivot->nilai }}</td>
                                             @if (auth()->user()->role == 'admin')
                                             <td>
@@ -164,15 +164,28 @@
                                               <div class="modal-body">
                                                 <form action="/siswa/{{ $siswa->id }}/addnilai" method="POST">
                                                   {{ csrf_field() }}
+                                                    @if (auth()->user()->role == 'admin')
                                                     <div class="form-group">
                                                         <label for="mapel">Pilih Mata Pelajaran</label>
                                                         <select class="form-control" id="mapel" name="mapel" required>
                                                             <option value="" selected disabled hidden>Pilih Mata Pelajaran</option>
-                                                            @foreach ($matapelajaran as $mp)
-                                                            <option class="text-capitalize text-dark" value="{{ $mp->id }}">{{ $mp->nama }}</option>    
-                                                            @endforeach
+                                                            
+                                                            {{-- <option class="text-capitalize text-dark" value="{{ $matapelajaran->id }}">{{ $matapelajaran->nama }}</option>     --}}
+                                                            
                                                         </select> 
                                                     </div>
+                                                    @elseif (auth()->user()->role == 'guru')
+                                                    <div class="form-group">
+                                                        <label for="mapel">Pilih Mata Pelajaran</label>
+                                                        <select class="form-control" id="mapel" name="mapel" required>
+                                                            <option value="" selected disabled hidden>Pilih Mata Pelajaran</option>
+                                                            {{-- @foreach ($matapelajaran as $mp) --}}
+                                                            <option class="text-capitalize text-dark" value="{{$matapelajaran->id}}">{{ $matapelajaran->nama }}</option>    
+                                                            {{-- @endforeach --}}
+                                                        </select> 
+                                                    </div>
+                                                    
+                                                    @endif
                                                     <div class="form-group">
                                                         <label for="nilai">Nilai</label>
                                                         <input type="number" min="0" max="100" name="nilai" class="form-control"/>
