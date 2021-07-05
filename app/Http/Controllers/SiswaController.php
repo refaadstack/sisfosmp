@@ -183,7 +183,7 @@ class SiswaController extends Controller
 
         $request->validate([
             'mapel' => 'required',
-            'nilai' => 'required|max:3'
+            'nilai' => 'required|max:3',
         ]);
 
         $siswa=\App\Siswa::find($idsiswa);
@@ -192,7 +192,7 @@ class SiswaController extends Controller
             return redirect('siswa/'.$idsiswa.'/profile')->withError('Data sudah ada!!');
         }
 
-        $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai]);
+        $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai,'guru_id' => Auth::user()->id]);
         // ['nilai'=>$request->nilai]);
         return redirect('siswa/'.$idsiswa.'/profile')->withInfo('Data sudah ditambah');
     }
