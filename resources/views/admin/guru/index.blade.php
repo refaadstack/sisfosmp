@@ -17,12 +17,11 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Nama</th>
                             <th>NIP</th>
-                            <th>Mata pelajaran</th>
                             <th>Jenis Kelamin</th>
                             <th>NUPTK</th>
                             <th>Tempat Lahir</th>
@@ -35,7 +34,6 @@
                         <tr>
                             <td class="text-capitalize"><a href="{{ route('guru.show',$guru->id) }}">{{ $guru->nama }}</a></td>
                             <td>{{ $guru->nip }}</td>
-                            <td>{{ $guru->mapel->nama }}</td>
                             <td>{{ $guru->jeniskelamin }}</td>
                             <td>{{ $guru->nuptk }}</td>
                             <td class="text-capitalize">{{ $guru->tempatlahir }}</td>

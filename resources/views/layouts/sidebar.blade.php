@@ -25,6 +25,7 @@
     <div class="sidebar-heading">
         Interface
     </div>
+    
     {{-- start admin --}}
     @if(auth()->user()->role == 'admin')
     <!-- Nav Item - Pages Collapse Menu -->
@@ -58,7 +59,7 @@
                 <a class="collapse-item" href="{{ route('siswa.index') }}">Siswa</a>
                 <a class="collapse-item" href="{{ route('guru.index') }}">Guru</a>
                 <a class="collapse-item" href="{{ route('mapel.index') }}">Mata Pelajaran</a>
-                <a class="collapse-item" href="{{ route('jadwal.index') }}">Jadwal</a>
+                {{-- <a class="collapse-item" href="{{ route('jadwal.index') }}">Jadwal</a> --}}
                 <a class="collapse-item" href="{{ route('kelas.index') }}">Kelas</a>
             </div>
         </div>
@@ -97,7 +98,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data</h6>
                 <a class="collapse-item" href="{{ route('siswa.index') }}">Siswa</a>
-                <a class="collapse-item" href="{{ route('jadwal.index') }}">Jadwal</a>
+                {{-- <a class="collapse-item" href="{{ route('jadwal.index') }}">Jadwal</a> --}}
             </div>
         </div>
     </li>
@@ -118,7 +119,6 @@
                 <h6 class="collapse-header">Menu</h6>
                 <a class="collapse-item" href="{{ route('profilsaya') }}">Profil</a>
                 <a class="collapse-item" href="{{ route('changepassword') }}">Ubah Password</a>
-            </div>
         </div>
     </li>
     @endif

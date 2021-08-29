@@ -53,16 +53,17 @@
                                 @endif
                             </div>
                             <div class="card-body">
+                                @if (auth()->user()->role == 'admin')
                                 <span><a href="{{ route('siswa.cetak_rapor_pdf',$siswa->id) }}" target="_blank" class="btn btn-success btn-sm mb-3">Cetak</a></span>
-
-                                <table class="table" id="dataTable" style="margin-top: 10px">
+                                @endif
+                                <table class="table table-bordered table-sm" id="dataTable" style="margin-top: 10px">
                                     <thead>
                                         <tr>
                                             <th scope="col">Kode</th>
                                             <th scope="col">Mata Pelajaran</th>
                                             <th scope="col">Semester</th>
                                             <th scope="col">Nilai</th>
-                                            @if (auth()->user()->role == 'admin')
+                                            @if (auth()->user()->role == 'admin'||auth()->user()->role == 'guru')
                                             <th scope="col">Aksi</th>
                                             @endif
                                         </tr>
@@ -77,7 +78,13 @@
                                             @if (auth()->user()->role == 'admin')
                                             <td>
                                                 <a href="#edit{{ $obj->id }}" class="btn btn-warning btn-sm" data-toggle="modal">Edit</a>
+                                            
                                                 <a href="#delete{{ $obj->id }}" class="btn btn-danger btn-sm" data-toggle="modal">Delete</a>
+                                            </td>
+                                            @endif
+                                            @if (auth()->user()->role == 'guru')
+                                            <td>
+                                                <a href="#edit{{ $obj->id }}" class="btn btn-warning btn-sm" data-toggle="modal">Edit</a>
                                             </td>
                                             @endif
                                         </tr>

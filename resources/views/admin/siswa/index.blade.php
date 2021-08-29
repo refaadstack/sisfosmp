@@ -17,10 +17,10 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th class="text-center">No</th>
                             <th>Nama</th>
                             <th>NIPD</th>
                             <th>Jenis Kelamin</th>
@@ -35,7 +35,7 @@
                     <tbody>
                       @foreach ($data as $siswa)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="text-capitalize"><a href="{{ route('siswa.profile',$siswa->id) }}">{{ $siswa->nama }}</a></td>
                             <td>{{ $siswa->nipd }}</td>
                             <td>{{ $siswa->jeniskelamin }}</td>

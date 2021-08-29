@@ -64,7 +64,7 @@
                                           <select class="form-control" name="walikelas" required>
                                               <option value="" selected disabled hidden>Pilih Wali kelas</option>
                                               @foreach ($guru as $walikelas)
-                                              <option class="text-capitalize" value="{{ $walikelas->nama}}" @if($walikelas->nama == $walikelas->nama) selected @endif>{{ $walikelas->nama }}</option>    
+                                              <option class="text-capitalize" value="{{ $walikelas->nama}}" @if($kelas->walikelas == $walikelas->nama) selected @endif>{{ $walikelas->nama }}</option>    
                                               @endforeach
                                           </select> 
                                           <div class="valid-feedback">Valid.</div>

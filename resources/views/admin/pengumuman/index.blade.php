@@ -10,7 +10,7 @@
                     @csrf
                     <div class="form-group">    
                         <label for="title">JUDUL PENGUMUMAN</label>
-                        <input type="text" class="form-control"  placeholder="Masukkan title" name="judul" required>
+                        <input type="text" class="form-control"  placeholder="Masukkan title" name="judul" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                         <label for="text">ISI PENGUMUMAN</label>

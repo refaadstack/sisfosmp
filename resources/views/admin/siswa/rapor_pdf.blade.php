@@ -97,6 +97,7 @@
                 $total = $total + $obj->pivot->nilai;
                 $hitung++;
                 $result = $total/$hitung;
+                $format = number_format($result,2);
                 ?>
             </tr>
 			@endforeach
@@ -104,7 +105,7 @@
             {
                 <tr>
                     <td colspan="3" class="text-center ">Rata-Rata</td>
-                    <td colspan="2">{{ $result }}</td>
+                    <td colspan="2">{{ $format }}</td>
                 </tr>
             }   
             @else
