@@ -47,7 +47,7 @@ Route::group(['middleware'=>['auth','checkrole:admin,guru']],function(){
     route::post('/siswa/{id}/updatenilai','SiswaController@updatenilai');
     route::delete('/siswa/{id}/{idmapel}/deletenilai','SiswaController@deletenilai');
     route::resource('/pengumuman','PengumumanController');
-    route::resource('/jadwal','JadwalController');
+   
 
     
 
@@ -61,6 +61,7 @@ Route::group(['middleware'=>'auth','checkrole:admin,siswa'],function(){
 // siswa
 Route::group(['middleware'=>['auth','checkrole:siswa']],function(){
     route::get('/profil','SiswaController@profilsaya')->name('profilsaya');
+
 });
 // guru
 Route::group(['middleware'=>['auth','checkrole:guru']],function(){
@@ -69,6 +70,13 @@ Route::group(['middleware'=>['auth','checkrole:guru']],function(){
 
 // dashboard
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+
+
+//jadwal
+Route::group(['middleware'=>['auth','checkrole:guru,admin,siswa']],function(){
+    route::resource('/jadwal','JadwalController');
+});
 
 // changepassword
 Route::get('change-password', 'ChangePasswordController@index')->name('changepassword');
