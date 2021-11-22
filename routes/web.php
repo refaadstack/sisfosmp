@@ -11,8 +11,6 @@
 |
 */
 
-use App\Http\Controllers\KelasController;
-use App\Jadwal;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,7 +35,7 @@ Auth::routes([
         route::post('/siswa/import', 'SiswaController@import_excel')->name('siswa.import');
         route::get('/siswa/export', 'SiswaController@export_excel')->name('siswa.export');
         route::post('/guru/import', 'GuruController@import_excel')->name('guru.import');
-        route::get('/guru/export', 'GuruController@export_excel')->name('guru.export');
+        route::get('/guru/cetak/excel', 'GuruController@cetak_excel');
     });
     // admin
 Route::group(['middleware'=>['auth','checkrole:admin,guru']],function(){

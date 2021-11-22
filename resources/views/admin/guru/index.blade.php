@@ -15,7 +15,8 @@
             <button type="button" class="btn btn-warning float-right mr-2" data-toggle="modal" data-target="#import">
               <i class="far fa-file"></i> Import Data
             </button>  
-            <a href="/guru/export" target="_blank" class="btn btn-success float-right mr-2"><i class="fas fa-download"></i> Export</a>  
+            <a href="/guru/cetak/excel" class="btn btn-success float-right mr-2" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-download"></i> Export</a>
         </div>
         <div class="card-header py-6">
         </div>

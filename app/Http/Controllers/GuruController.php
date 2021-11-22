@@ -178,9 +178,9 @@ class GuruController extends Controller
 
     
     }
-    public function export_excel()
+    public function cetak_excel()
 	{
-		return Excel::download(new GuruExport, 'guru.xlsx');
+		return Excel::download(new GuruExport,'guru.xlsx');
         
     }
 }
