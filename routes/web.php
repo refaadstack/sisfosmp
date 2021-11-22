@@ -34,6 +34,10 @@ Auth::routes([
         route::get('/mapel','MapelController@index')->name('mapel.index');
         route::post('/mapel/store','MapelController@store')->name('mapel.store');
         route::put('/mapel/{id}','MapelController@update')->name('mapel.update');
+        route::post('/siswa/import', 'SiswaController@import_excel')->name('siswa.import');
+        route::get('/siswa/export', 'SiswaController@export_excel')->name('siswa.export');
+        route::post('/guru/import', 'GuruController@import_excel')->name('guru.import');
+        route::get('/guru/export', 'GuruController@export_excel')->name('guru.export');
     });
     // admin
 Route::group(['middleware'=>['auth','checkrole:admin,guru']],function(){
@@ -46,10 +50,7 @@ Route::group(['middleware'=>['auth','checkrole:admin,guru']],function(){
     route::post('/siswa/{id}/addnilai','SiswaController@addnilai');
     route::post('/siswa/{id}/updatenilai','SiswaController@updatenilai');
     route::delete('/siswa/{id}/{idmapel}/deletenilai','SiswaController@deletenilai');
-    route::resource('/pengumuman','PengumumanController');
-   
-
-    
+    route::resource('/pengumuman','PengumumanController');  
 
 });
 

@@ -7,7 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Guru extends Model
 {
     protected $fillable=[
-        'nama','nuptk','mapel_id','jeniskelamin','user_id','avatar','tempatlahir','tanggallahir','agama','email','nip'
+        'user_id',
+        'mapel_id',
+        'nama',
+        'nip',
+        'jeniskelamin',
+        'tanggallahir',
+        'tempatlahir',
+        'agama',
+        'no_hp',
+        'jabatan',
+        'jurusan',
+        'avatar',
+        'email',
     ];
 
     public function user(){

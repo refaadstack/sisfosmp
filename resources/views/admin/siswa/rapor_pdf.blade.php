@@ -34,13 +34,13 @@
 	</style>
             <table width="100%">
                 <tr>
-                <td width="50px" align="left"><img src="{{ asset('images/logo_diknas.png') }}" width="100%"></td>
+                <td width="60px" align="left"><img src="{{ asset('images/logo_diknas.png') }}" width="100%"></td>
                 <td width="100px" align="center">
-                    <h5>Dinas Pendidikan Kabupaten Merangin</h5>
-                    <h6>SMKN SPP Merangin</h6>
-                    <small>Jalan Syeh Maulana Qori Desa Titian Teras Kecamatan Batang Mesumai</small>
+                    <h5>Dinas Pendidikan Kabupaten Muaro Jambi</h5>
+                    <h6>SMP Negeri 1 Muaro Jambi</h6>
+                    <small>Jl. Jambi – Muaro Bulian KM. 17 desa Sungai Duren Rt.02 Kec.Jambi Luar Kota Kab. Muaro Jambi Prov, Jambi</small>
                 </td>
-                <td width="50px" align="right"><img src="{{ asset('assets/img/logo.png') }}" width="100%"></td>
+                <td width="70px" align="right"><img src="{{ asset('assets/img/logo.png') }}" width="100%"></td>
                 </tr>
             </table>
             <hr>
@@ -51,9 +51,9 @@
             <div class="col-6" id="headrapor">
                 <p>Nama  : <span class="text-capitalize">{{ $siswa->nama }}</span></p>
                 <p>Kelas : {{ $siswa->kelas->namakelas }}</p>
+                <p>NIS  : {{ $siswa->nis }}</p>
                 <p>NISN  : {{ $siswa->nisn }}</p>
                 <p>Jenis kelamin  : {{ $siswa->jeniskelamin }}</p>
-                <p>NIPD  : {{ $siswa->nipd }}</p>
             </div>
             {{-- <div class="col">Kelas      : <span>{{ $siswa->kelas->nama }}</span></div> --}}
         </div>

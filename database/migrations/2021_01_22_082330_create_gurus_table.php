@@ -17,12 +17,15 @@ class CreateGurusTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('nama');
-            $table->string('avatar')->nullable();
-            $table->string('nuptk')->nullable();
             $table->string('nip')->nullable();
             $table->string('jeniskelamin');
             $table->string('tempatlahir');
             $table->date('tanggallahir');
+            $table->string('agama')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('jurusan')->nullable();
+            $table->string('jabatan')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('email')->nullable();
             $table->timestamps();
         });

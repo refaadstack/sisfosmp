@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SiswaExport;
 use App\Guru;
+use App\Imports\SiswaImport;
 use App\Kelas;
 use App\Mapel;
 use App\Siswa;
@@ -13,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaController extends Controller
 {
@@ -49,13 +52,14 @@ class SiswaController extends Controller
     {
         $request->validate([
             'nama'           => 'required',
-            'nipd'           => 'required|unique:siswas,nipd',
+            'nis'           => 'required|unique:siswas,nis',
             'jeniskelamin'   => 'required',
             'nisn'           => 'required|unique:siswas,nisn',
             'tempatlahir'    => 'required',
             'tanggallahir'   => 'required|date',
             'agama'          => 'required',
             'kelas_id'       => 'required',
+            'nama_orangtua'  => 'required',
             'email'          => 'required|unique:siswas,email',
         ]);
 
@@ -142,12 +146,13 @@ class SiswaController extends Controller
     {
         $request->validate([
             'nama'           => 'required',
-            'nipd'           => 'required|unique:siswas,nipd,'.$id,
+            'nis'           => 'required|unique:siswas,nis,'.$id,
             'jeniskelamin'   => 'required',
             'nisn'           => 'required|unique:siswas,nisn,'.$id,
             'tempatlahir'    => 'required',
             'tanggallahir'   => 'required|date',
             'agama'          => 'required',
+            'nama_orangtua'  => 'required',
             'email'          => 'required|unique:siswas,email,'.$id,
             'avatar'         => 'mimes:jpeg,png,jpg',
         ]);
@@ -238,4 +243,33 @@ class SiswaController extends Controller
 
         return view ('siswa.profilsaya',compact(['siswa','kelas','matapelajaran','categories','data',]));
     }
+    public function import_excel(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_siswa',$nama_file);
+ 
+		// import data
+		Excel::import(new SiswaImport, public_path('/file_siswa/'.$nama_file));
+
+ 
+		// notifikasi dengan session
+ 
+		// alihkan halaman kembali
+		return redirect('/siswa')->withInfo('siswa sudah diimport');
+	}
+    public function export_excel()
+	{
+		return Excel::download(new SiswaExport, 'siswa.xlsx');
+	}
 }

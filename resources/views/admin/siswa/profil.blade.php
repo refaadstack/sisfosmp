@@ -44,10 +44,10 @@
                 <div class="col-md-8 mt-4">
                     <div class="container">
                         <div class="card">
-                            <div class="card-header bg-danger text-white">
+                            <div class="card-header bg-primary text-white">
                                 Nilai Mata Pelajaran
                                 @if (auth()->user()->role == 'admin'||auth()->user()->role == 'guru')
-                                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#tambah">
+                                <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#tambah">
                                     + Tambah Data
                                 </button>
                                 @endif
@@ -253,7 +253,7 @@ Highcharts.chart('chartNilai', {
     },
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:#ff0000;padding:0">{series.name}: </td>' +
+        pointFormat: '<tr><td style="color:#3385ff;padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
@@ -265,7 +265,7 @@ Highcharts.chart('chartNilai', {
             borderWidth: 0
         }
     },
-    colors: ['#ff4d4d'],
+    colors: ['#3385ff'],
     series: [{
         name: 'Nilai',
         data: {!! json_encode($data) !!}

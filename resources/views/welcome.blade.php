@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SIAKAD SMKN SPP MERANGIN</title>
+    <title>SIAKAD SMP N 1 Muaro Jambi</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"></head>
   
     <body>
-    <section class="h-100 w-100" style="box-sizing: border-box; background-color: #8a0b20">
+    <section class="h-100 w-100" style="box-sizing: border-box; background-color: rgb(6, 28, 228)">
       <div class="header-4-3 container-xxl mx-auto p-0 position-relative" style="font-family: 'Poppins', sans-serif">
         <nav class="navbar navbar-expand-lg navbar-dark">
           <div class="container-fluid">
@@ -20,7 +20,7 @@
               @guest
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                  <a href="#" class="btn btn-fill border-1 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a>
+                  <a href="#" class="btn btn-fill  border-1 text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a>
                 </li>
               </ul>
               @else
@@ -29,7 +29,7 @@
                   <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                  <a class="nav-link text-white" href="{{ route('dashboard') }}">Dashboard</a>
                 </li>
               </ul>
               <ul class="navbar-nav ms-auto">
@@ -65,7 +65,7 @@
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-light" style="background-color: #8a0b20">
+            <div class="modal-content text-light" style="background-color: rgb(6, 28, 228)">
               <div class="modal-header" style="border: none">
                 <h5 class="modal-title" id="exampleModalLabel">Login</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -137,7 +137,7 @@
             <div class="d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
               <h1 class="title-text-big">
                 Selamat Datang<br class="d-lg-block d-none" />
-                di SIAKAD SMKN SPP Merangin
+                di SIAKAD SMP N 1 Muaro Jambi
               </h1>
             </div>
           </div>
@@ -149,10 +149,10 @@
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active justify-content-center">
-                <img src="{{ asset('images/img.jpeg') }}" class="d-block w-100" style="max-width: 1500px; width: 100%; height: 450px" alt="..." />
+                <img src="{{ asset('images/img1.jpeg') }}" class="d-block w-100" style="max-width: 1500px; width: 100%; height: 450px" alt="..." />
               </div>
               <div class="carousel-item">
-                <img src="{{ asset('images/img1.jpeg') }}" class="d-block w-100" style="max-width: 1500px; width: 100%; height: 450px" alt="..." />
+                <img src="{{ asset('images/img2.jpeg') }}" class="d-block w-100" style="max-width: 1500px; width: 100%; height: 450px" alt="..." />
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -170,10 +170,7 @@
           <!-- Left Column -->
           <div class="left-column d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
             <h1 class="title-text-big">
-              Program Studi<br class="d-lg-block d-none" />
-              <h5 class="text-white">1. Agribisnis Tanaman Pangan dan Holtikultura (Akreditasi A)</h5>
-              <br />
-              <h5 class="text-white">2. Agribisnis Tanaman Perkebunan (Akreditasi A)</h5>
+              <h5 class="text-light">Kami Menyambut baik pengunjung yang datang di website resmi kami , dengan harapan website ini dapat memberikan informasi yang akurat dan meningkatkan layanan pendidikan kepada siswa, orangtua, dan masyarakat pada umumnya semakin meningkat.</h5>
             </h1>
           </div>
           <!-- Right Column -->
@@ -182,10 +179,11 @@
     </section>
 
     <!-- footer -->
-    <section class="h-100 w-100" style="box-sizing: border-box; background-color:#8a0b20">
+    <section class="h-100 w-100" style="box-sizing: border-box; background-color:rgb(6, 28, 228)">
       <div class="footer-2-3 container-xxl mx-auto position-relative p-0" style="font-family: 'Poppins', sans-serif">
         <div class="text-center">
-          <h5 class="text-light">Copyright &copy; SMK N SPP Merangin</h5>
+          <h5 class="text-light">Copyright &copy; <a class="text-white" href="https://smpn1muarojambi.sch.id/">SMP N 1 Muaro Jambi</a>
+          </h5>
         </div>
         <br />
       </div>

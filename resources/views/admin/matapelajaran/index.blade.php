@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 text-gray-800">Data Mata Pelajaran SMK N SPP Merangin</h1>
+    <h1 class="h3 text-gray-800">Data Mata Pelajaran SMP N 1 Muaro Jambi</h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">

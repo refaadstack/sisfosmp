@@ -1,11 +1,11 @@
-<ul class="navbar-nav bg-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <img src="{{ asset('assets/img/logo.png') }}" style="width: 40px; height: 40px" alt="">
+        <div class="sidebar-brand-icon ">
+            <img src="{{ asset('assets/img/logo.png') }}" style="width: 100%; height: 80px" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3">  SIAKAD</div>
+        {{-- <div class="sidebar-brand-text mx-3">  SIAKAD</div> --}}
     </a>
 
     <!-- Divider -->

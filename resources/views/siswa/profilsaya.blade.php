@@ -20,7 +20,7 @@
                                 <b>NISN</b> <span class="float-right text-capitalize">{{ $siswa->nisn}}</span>
                             </li>
                             <li class="list-group-item">
-                                <b>NIPD</b> <span class="float-right text-capitalize">{{ $siswa->nipd}}</span>
+                                <b>NIS</b> <span class="float-right text-capitalize">{{ $siswa->nis}}</span>
                             </li>
                             <li class="list-group-item">
                             <b>Tempat Lahir</b> <span class="float-right text-capitalize">{{ $siswa->tempatlahir }}</span>
@@ -44,7 +44,7 @@
                 <div class="col-md-8 mt-4">
                     <div class="container">
                         <div class="card">
-                            <div class="card-header bg-danger text-white">
+                            <div class="card-header bg-primary text-white">
                                 Nilai Mata Pelajaran
                             </div>
                             <div class="card-body">
@@ -110,7 +110,7 @@ Highcharts.chart('chartNilai', {
     },
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:#ff0000;padding:0">{series.name}: </td>' +
+        pointFormat: '<tr><td style="color:#3385ff;padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
@@ -122,7 +122,7 @@ Highcharts.chart('chartNilai', {
             borderWidth: 0
         }
     },
-    colors: ['#ff4d4d'],
+    colors: ['#3385ff'],
     series: [{
         name: 'Nilai',
         data: {!! json_encode($data) !!}

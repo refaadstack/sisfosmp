@@ -80,7 +80,7 @@
         
                 <div class="col-md-12 col">
                     <div class="card shadow" style="margin-bottom: 100px">
-                        <h5 class="card-header bg-danger text-center text-white">PENGUMUMAN</h5>
+                        <h5 class="card-header bg-primary text-center text-white">PENGUMUMAN</h5>
                         <div class="card-body">                            
                             <h5 class="card-title">{{ $pengumuman->judul }}</h5>
                             <p class="card-text text-justify">{!! $pengumuman->isi !!}</p>

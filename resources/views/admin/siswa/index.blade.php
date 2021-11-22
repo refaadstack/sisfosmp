@@ -4,14 +4,18 @@
 
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 text-gray-800">Data Siswa SMK N SPP Merangin</h1>
+    <h1 class="h3 text-gray-800">Data Siswa SMP N 1 Muaro Jambi</h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-dark">Table Siswa</h6> 
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#tambah">
+            <button type="button" class="btn btn-primary float-right " data-toggle="modal" data-target="#tambah">
               + Tambah Data
-            </button>     
+            </button>   
+            <button type="button" class="btn btn-warning float-right mr-2" data-toggle="modal" data-target="#import">
+              <i class="far fa-file"></i> Import Data
+            </button> 
+            <a href="{{ route('siswa.export') }}" target="_blank" class="btn btn-success float-right mr-2"><i class="fas fa-download"></i> Export</a>
         </div>
         <div class="card-header py-6">
         </div>
@@ -22,7 +26,7 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th>Nama</th>
-                            <th>NIPD</th>
+                            <th>NIS</th>
                             <th>Jenis Kelamin</th>
                             <th>NISN</th>
                             <th>Tempat Lahir</th>
@@ -37,7 +41,7 @@
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="text-capitalize"><a href="{{ route('siswa.profile',$siswa->id) }}">{{ $siswa->nama }}</a></td>
-                            <td>{{ $siswa->nipd }}</td>
+                            <td>{{ $siswa->nis }}</td>
                             <td>{{ $siswa->jeniskelamin }}</td>
                             <td>{{ $siswa->nisn }}</td>
                             <td class="text-capitalize">{{ $siswa->tempatlahir }}</td>
@@ -72,10 +76,10 @@
                                           <div class="invalid-feedback">Nama tidak boleh kosong!</div>
                                         </div>
                                         <div class="form-group">
-                                          <label for="nipd">NIPD</label>
-                                          <input type="number" class="form-control" placeholder="Masukkan NIPD" name="nipd" value="{{ $siswa->nipd }}" required>
+                                          <label for="nis">NIS</label>
+                                          <input type="number" class="form-control" placeholder="Masukkan NIS" name="nis" value="{{ $siswa->nis }}" required>
                                           <div class="valid-feedback">Valid.</div>
-                                          <div class="invalid-feedback">NIPD tidak boleh kosong!</div>
+                                          <div class="invalid-feedback">nis tidak boleh kosong!</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="jeniskelamin">Jenis Kelamin</label>
@@ -129,6 +133,12 @@
                                           </select> 
                                           <div class="valid-feedback">Valid.</div>
                                           <div class="invalid-feedback">Kelas tidak boleh kosong!</div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="nama_orangtua">Nama Orang Tua</label>
+                                        <input type="text" class="form-control"  placeholder="Masukkan Tempat Lahir" name="nama_orangtua" value="{{ $siswa->nama_orangtua }}" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Nama orang tua tidak boleh kosong!</div>
                                       </div>
                                         <div class="form-group">
                                             <label for="email">E-Mail</label>
@@ -203,10 +213,10 @@
                                       <div class="invalid-feedback">Nama tidak boleh kosong!</div>
                                     </div>
                                     <div class="form-group">
-                                      <label for="nipd">NIPD</label>
-                                      <input type="number" class="form-control" placeholder="Masukkan NIPD" name="nipd" required>
+                                      <label for="nis">NIS</label>
+                                      <input type="number" class="form-control" placeholder="Masukkan NIS" name="nis" required>
                                       <div class="valid-feedback">Valid.</div>
-                                      <div class="invalid-feedback">NIPD tidak boleh kosong!</div>
+                                      <div class="invalid-feedback">nis tidak boleh kosong!</div>
                                     </div>
                                     <div class="form-group">
                                         <label for="jeniskelamin">Jenis Kelamin</label>
@@ -262,6 +272,12 @@
                                       <div class="valid-feedback">Valid.</div>
                                       <div class="invalid-feedback">Kelas tidak boleh kosong!</div>
                                   </div>
+                                  <div class="form-group">
+                                    <label for="nama_orangtua">Nama Orang Tua</label>
+                                    <input type="text" class="form-control"  placeholder="Masukkan Nama Orang Tua" name="nama_orangtua" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Nama Orang tua tidak boleh kosong!</div>
+                                  </div>
                                     <div class="form-group">
                                         <label for="email">E-Mail</label>
                                         <input type="email" class="form-control"  placeholder="Masukkan Email" name="email" required>
@@ -280,6 +296,37 @@
                         </div>
                       </div>
                       {{-- end modal tambah --}}
+
+                      {{-- modal import --}}
+                      <div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Import Data siswa</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="modal-body">
+                                <form action="{{ route('siswa.import') }}" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+                                  {{ csrf_field() }}
+                                    <div class="form-group">
+                                      <label for="nama">Masukkan File excel</label>
+                                      <input type="file" class="form-control"  placeholder="Masukkan File excel" name="file" required>
+                                      <div class="valid-feedback">Valid.</div>
+                                      <div class="invalid-feedback">Nama tidak boleh kosong!</div>
+                                    </div>        
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </table>
             </div>
         </div>
