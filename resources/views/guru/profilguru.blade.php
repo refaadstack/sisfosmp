@@ -4,7 +4,7 @@
     <div class="content ml-4 mt-3">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-12">
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">

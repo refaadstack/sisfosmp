@@ -61,6 +61,7 @@
                                             <th scope="col">UH</th>
                                             <th scope="col">UTS</th>
                                             <th scope="col">UAS</th>
+                                            <th scope="col">Nilai Akhir</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -74,6 +75,9 @@
                                             <td>{{ $obj->pivot->uh }}</td>
                                             <td>{{ $obj->pivot->uts }}</td>
                                             <td>{{ $obj->pivot->uas }}</td>
+                                            <td>
+                                                <?php echo($nilaiAkhir = ($obj->pivot->nilai + $obj->pivot->tugas + $obj->pivot->uh + $obj->pivot->uts + $obj->pivot->uas )/5)  ?>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

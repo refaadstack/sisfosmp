@@ -67,6 +67,8 @@
                                             <th scope="col">UH</th>
                                             <th scope="col">UTS</th>
                                             <th scope="col">UAS</th>
+                                            <th scope="col">Nilai Akhir</th>
+                                            
                                             @if (auth()->user()->role == 'admin'||auth()->user()->role == 'guru')
                                             <th scope="col">Aksi</th>
                                             @endif
@@ -83,6 +85,9 @@
                                             <td>{{ $obj->pivot->uh }}</td>
                                             <td>{{ $obj->pivot->uts }}</td>
                                             <td>{{ $obj->pivot->uas }}</td>
+                                            <td>
+                                                <?php echo($nilaiAkhir = ($obj->pivot->nilai + $obj->pivot->tugas + $obj->pivot->uh + $obj->pivot->uts + $obj->pivot->uas )/5)  ?>
+                                                </td>
                                             @if (auth()->user()->role == 'admin')
                                             <td>
                                                 <a href="#edit{{ $obj->id }}" class="btn btn-warning btn-sm" data-toggle="modal">Edit</a>
