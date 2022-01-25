@@ -147,7 +147,7 @@
             return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
         }
     ?>
-    <p align="right" id="tanggal" class="mb-2">Bangko, {{tgl_indo(date('Y-m-d')) }}</p>
+    <p align="right" id="tanggal" class="mb-2">Muaro Jambi, {{tgl_indo(date('Y-m-d')) }}</p>
     <p align="right" style="margin-right: 85px">{{ $siswa->kelas->walikelas }}  </p>
 </body>
 

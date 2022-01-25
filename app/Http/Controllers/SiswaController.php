@@ -202,12 +202,17 @@ class SiswaController extends Controller
         return redirect('siswa/'.$idsiswa.'/profile')->withInfo('Data sudah ditambah');
     }
     public function updatenilai(Request $request,$idsiswa){
+        $request->validate([
+            'mapel' => 'required',
+            'nilai' => 'required|max:3',
+        ]);
         $siswa=\App\Siswa::find($idsiswa);
         $siswa->mapel()->updateExistingPivot($request->mapel,['nilai' => $request->nilai,'guru_id' => Auth::user()->id,'uh'=>$request->uh,'tugas'=>$request->tugas,'uts'=>$request->uts,'uas'=>$request->uas]);
         // dd($request->all());
         return redirect('siswa/'.$idsiswa.'/profile')->withInfo('Data sudah diupdate!');
     }
     public function deletenilai($idsiswa, $idmapel){
+
         $siswa = Siswa::find($idsiswa);
         $siswa->mapel()->detach($idmapel);
         return redirect()->back()->with('sukses','Data sudah dihapus');

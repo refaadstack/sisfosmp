@@ -4,7 +4,7 @@
     <div class="content ml-4">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 mt-4">
+                <div class="col-md-12 mt-4">
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">
@@ -41,7 +41,7 @@
                         <!-- /.card-body -->
                     </div>
                 </div>
-                <div class="col-md-8 mt-4">
+                <div class="col-md-12 mt-4">
                     <div class="container">
                         <div class="card">
                             <div class="card-header bg-primary text-white">
@@ -56,7 +56,11 @@
                                             <th scope="col">Kode</th>
                                             <th scope="col">Mata Pelajaran</th>
                                             <th scope="col">Semester</th>
-                                            <th scope="col">Nilai</th>
+                                            <th scope="col">T.Kelompok</th>
+                                            <th scope="col">Tugas</th>
+                                            <th scope="col">UH</th>
+                                            <th scope="col">UTS</th>
+                                            <th scope="col">UAS</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -66,6 +70,10 @@
                                             <td>{{ $obj->nama }}</td>
                                             <td>{{  $obj->semester  }}</td>
                                             <td>{{ $obj->pivot->nilai }}</td>
+                                            <td>{{ $obj->pivot->tugas }}</td>
+                                            <td>{{ $obj->pivot->uh }}</td>
+                                            <td>{{ $obj->pivot->uts }}</td>
+                                            <td>{{ $obj->pivot->uas }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
