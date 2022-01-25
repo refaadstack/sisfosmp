@@ -34,13 +34,13 @@
 	</style>
             <table width="100%">
                 <tr>
-                <td width="60px" align="left"><img src="{{ asset('images/logo_diknas.png') }}" width="100%"></td>
+                {{-- <td width="60px" align="left"><img src="{{ asset('images/logo_diknas.png') }}" width="100%"></td> --}}
                 <td width="100px" align="center">
                     <h5>Dinas Pendidikan Kabupaten Muaro Jambi</h5>
                     <h6>SMP Negeri 1 Muaro Jambi</h6>
                     <small>Jl. Jambi – Muaro Bulian KM. 17 desa Sungai Duren Rt.02 Kec.Jambi Luar Kota Kab. Muaro Jambi Prov, Jambi</small>
                 </td>
-                <td width="70px" align="right"><img src="{{ asset('assets/img/logo.png') }}" width="100%"></td>
+                {{-- <td width="70px" align="right"><img src="{{ asset('assets/img/logo.png') }}" width="100%"></td> --}}
                 </tr>
             </table>
             <hr>
