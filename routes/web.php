@@ -65,6 +65,7 @@ Route::group(['middleware'=>['auth','checkrole:siswa']],function(){
 // guru
 Route::group(['middleware'=>['auth','checkrole:guru']],function(){
     route::get('/profil/guru','GuruController@profilguru')->name('profilguru');
+    route::get('/jadwalsaya/{idguru}','GuruController@jadwalGuru')->name('jadwalGuru');
 });
 
 // dashboard

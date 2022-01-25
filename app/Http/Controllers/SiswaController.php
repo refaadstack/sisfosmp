@@ -115,7 +115,7 @@ class SiswaController extends Controller
 
             if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
                 $categories[]= $mp->nama;
-                $data[]= $siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()->pivot->nilai;
+                $data[]= $siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()->pivot->uas;
             }
         }
 
@@ -197,13 +197,13 @@ class SiswaController extends Controller
             return redirect('siswa/'.$idsiswa.'/profile')->withError('Data sudah ada!!');
         }
 
-        $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai,'guru_id' => Auth::user()->id]);
+        $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai,'guru_id' => Auth::user()->id,'uh'=>$request->uh,'tugas'=>$request->tugas,'uts'=>$request->uts,'uas'=>$request->uas]);
         // ['nilai'=>$request->nilai]);
         return redirect('siswa/'.$idsiswa.'/profile')->withInfo('Data sudah ditambah');
     }
     public function updatenilai(Request $request,$idsiswa){
         $siswa=\App\Siswa::find($idsiswa);
-        $siswa->mapel()->updateExistingPivot($request->mapel,['nilai' => $request->nilai]);
+        $siswa->mapel()->updateExistingPivot($request->mapel,['nilai' => $request->nilai,'guru_id' => Auth::user()->id,'uh'=>$request->uh,'tugas'=>$request->tugas,'uts'=>$request->uts,'uas'=>$request->uas]);
         // dd($request->all());
         return redirect('siswa/'.$idsiswa.'/profile')->withInfo('Data sudah diupdate!');
     }

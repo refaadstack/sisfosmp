@@ -4,7 +4,7 @@
     <div class="content ml-4">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 mt-4">
+                <div class="col-md-12 mt-4">
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">
@@ -41,7 +41,7 @@
                         <!-- /.card-body -->
                     </div>
                 </div>
-                <div class="col-md-8 mt-4">
+                <div class="col-md-12 mt-4">
                     <div class="container">
                         <div class="card">
                             <div class="card-header bg-primary text-white">
@@ -62,7 +62,11 @@
                                             <th scope="col">Kode</th>
                                             <th scope="col">Mata Pelajaran</th>
                                             <th scope="col">Semester</th>
-                                            <th scope="col">Nilai</th>
+                                            <th scope="col">T.Kelompok</th>
+                                            <th scope="col">Tugas</th>
+                                            <th scope="col">UH</th>
+                                            <th scope="col">UTS</th>
+                                            <th scope="col">UAS</th>
                                             @if (auth()->user()->role == 'admin'||auth()->user()->role == 'guru')
                                             <th scope="col">Aksi</th>
                                             @endif
@@ -75,6 +79,10 @@
                                             <td>{{ $obj->nama }}</td>
                                             <td>{{  $obj->semester }}</td>
                                             <td>{{ $obj->pivot->nilai }}</td>
+                                            <td>{{ $obj->pivot->tugas }}</td>
+                                            <td>{{ $obj->pivot->uh }}</td>
+                                            <td>{{ $obj->pivot->uts }}</td>
+                                            <td>{{ $obj->pivot->uas }}</td>
                                             @if (auth()->user()->role == 'admin')
                                             <td>
                                                 <a href="#edit{{ $obj->id }}" class="btn btn-warning btn-sm" data-toggle="modal">Edit</a>
@@ -113,8 +121,30 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
-                                                                <label for="nilai">Nilai</label>
-                                                                <input type="number" min="0" max="100" name="nilai" class="form-control" value="{{ $obj->pivot->nilai }}"/>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <label for="nilai">T.Kelompok</label>
+                                                                    <input type="number" min="0" max="100" name="nilai" class="form-control" value="{{ $obj->pivot->nilai }}"/>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label for="tugas">Tugas</label>
+                                                                    <input type="number" min="0" max="100" name="tugas" class="form-control" value="{{ $obj->pivot->tugas }}"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <label for="uh">Ulangan Harian</label>
+                                                                    <input type="number" min="0" max="100" name="uh" class="form-control" value="{{ $obj->pivot->uh }}"/>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label for="uts">UTS</label>
+                                                                    <input type="number" min="0" max="100" name="uts" class="form-control" value="{{ $obj->pivot->uts }}"/>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label for="uas">UAS</label>
+                                                                    <input type="number" min="0" max="100" name="uas" class="form-control" value="{{ $obj->pivot->uas }}"/>
+                                                                </div>
+                                                            </div>
                                                                 {{-- <input type="number"  placeholder="Masukkan angka" min="0" max="100"> --}}
                                                             </div>
                                                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -197,9 +227,35 @@
 
                                                     @endif
                                                     <div class="form-group">
-                                                        <label for="nilai">Nilai</label>
-                                                        <input type="number" min="0" max="100" name="nilai" class="form-control"/>
-                                                        {{-- <input type="number"  placeholder="Masukkan angka" min="0" max="100"> --}}
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label for="nilai">Tugas Kelompok</label>
+                                                                <input type="number" min="0" max="100" name="nilai" class="form-control"/>
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="tugas">Tugas</label>
+                                                                <input type="number" min="0" max="100" name="tugas" class="form-control"/>  
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label for="uh">Ulangan Harian</label>
+                                                                <input type="number" min="0" max="100" name="uh" class="form-control"/>
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="uts">UTS</label>
+                                                                <input type="number" min="0" max="100" name="uts" class="form-control"/>
+                                                            </div>
+                                                            <div class="col">
+                                                                <label for="uas">UAS</label>
+                                                                <input type="number" min="0" max="100" name="uas" class="form-control"/>
+                                                            </div>
+                                                        </div>
+                                                        
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                   </form>

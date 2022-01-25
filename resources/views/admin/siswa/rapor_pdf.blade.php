@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>SMKN SPP Merangin</title>
+	<title>SMP N 1 Muaro Jambi</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -73,20 +73,23 @@
             $total = 0;
             $hitung = 0;
             $result = 0;
+            // $nilaiAkhir=0
             ?>
             @foreach ($siswa->mapel as $obj)    
             <tr>
                 <td>{{ $obj->kode }}</td>
                 <td>{{ $obj->nama }}</td>
                 <td>{{ $obj->semester  }}</td>
-                <td>{{ $obj->pivot->nilai }}</td>
-                @if ($obj->pivot->nilai >= 80){
+                <td>
+                <?php echo($nilaiAkhir = ($obj->pivot->nilai + $obj->pivot->tugas + $obj->pivot->uh + $obj->pivot->uts + $obj->pivot->uas )/5)  ?>
+                </td>
+                @if ($nilaiAkhir >= 80){
                     <td>{{ 'A' }}</td>   
                 }
-                @elseif ($obj->pivot->nilai >= 70){
+                @elseif ($nilaiAkhir >= 70){
                     <td>{{ 'B' }}</td>
                 }
-                @elseif ($obj->pivot->nilai >= 60){
+                @elseif ($nilaiAkhir >= 60){
                     <td>{{ 'C' }}</td>
                 }
                 @else{
@@ -94,7 +97,7 @@
                 }                    
                 @endif
                 <?php
-                $total = $total + $obj->pivot->nilai;
+                $total = $total + $nilaiAkhir;
                 $hitung++;
                 $result = $total/$hitung;
                 $format = number_format($result,2);

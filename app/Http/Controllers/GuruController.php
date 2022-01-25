@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Exports\GuruExport;
 use App\Guru;
 use App\Imports\GuruImport;
+use App\Jadwal;
 use App\Mapel;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -174,7 +176,7 @@ class GuruController extends Controller
 		// notifikasi dengan session
  
 		// alihkan halaman kembali
-		return redirect('/guru')->withInfo('siswa sudah diimport');
+		return redirect('/guru')->withInfo('guru sudah diimport');
 
     
     }
@@ -182,5 +184,24 @@ class GuruController extends Controller
 	{
 		return Excel::download(new GuruExport,'guru.xlsx');
         
+    }
+    public function jadwalGuru($idguru){
+        $guru = Guru::find($idguru);
+        $jadwal = DB::table('gurus')
+                  ->join('jadwals as j','gurus.id','j.guru_id')
+                  ->join('kelas as k','k.id','j.kelas_id')
+                  ->join('mapels as m','m.id','j.mapel_id')
+                  ->select(
+                      'j.hari',
+                      'j.jam_mulai',
+                      'j.jam_selesai',
+                      'k.namakelas',
+                      'gurus.nama',
+                      'm.nama as mapel'
+                  )
+                  ->where('j.guru_id',$guru->id)
+                  ->get();
+        // dd($jadwal);
+        return view('guru.jadwalguru',compact('guru','jadwal'));
     }
 }
