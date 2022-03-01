@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Guru;
 use App\Mapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -41,5 +42,11 @@ class MapelController extends Controller
         $mapel->update($request->all());
         // dd($request->all());
         return back()->withInfo('Mapel sudah diupdate');
+    }
+    public function getGuru($id)
+    {
+        $guru = Guru::where('mapel_id',$id)->pluck('nama','mapel_id');
+        // dd($guru);
+        return response()->json($guru);
     }
 }

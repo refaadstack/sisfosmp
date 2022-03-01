@@ -66,6 +66,7 @@ class SiswaController extends Controller
         $user = new User;
         $user->role = 'siswa';
         $user->name = $request->nama;
+        $user->username = $request->nisn;
         $user->email = $request->email;
         $user->password = bcrypt('12345678');
         $user->remember_token = str::random(60);
@@ -165,6 +166,11 @@ class SiswaController extends Controller
             $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
             $siswa->avatar = $request->file('avatar')->getClientOriginalName();
             $siswa->save();
+        }
+        else if($request->has('nisn')){
+            $username = User::find($siswa->user_id);
+            $username->username = $request->nisn;
+            $username->update();
         }
 
         return back()->withInfo('Data Berhasil Diubah');

@@ -35,6 +35,7 @@ Auth::routes([
         route::get('/siswa/export', 'SiswaController@export_excel')->name('siswa.export');
         route::post('/guru/import', 'GuruController@import_excel')->name('guru.import');
         route::get('/guru/cetak/excel', 'GuruController@cetak_excel');
+        Route::get('/mapel/guru/{mapel_id}', 'MapelController@getGuru')->name('mapel.guru');
     });
     // admin
 Route::group(['middleware'=>['auth','checkrole:admin,guru']],function(){

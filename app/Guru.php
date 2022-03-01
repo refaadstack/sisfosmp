@@ -12,6 +12,7 @@ class Guru extends Model
         'mapel_id',
         'nama',
         'nip',
+        'nik',
         'jeniskelamin',
         'tanggallahir',
         'tempatlahir',

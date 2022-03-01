@@ -27,6 +27,7 @@
                         <tr>
                             <th>Nama</th>
                             <th>NIP</th>
+                            <th>NIK</th>
                             <th>Jenis Kelamin</th>
                             <th>Tempat Lahir</th>
                             <th>Tanggal Lahir</th>
@@ -42,6 +43,7 @@
                         <tr>
                             <td class="text-capitalize"><a href="{{ route('guru.show',$guru->id) }}">{{ $guru->nama }}</a></td>
                             <td>{{ $guru->nip }}</td>
+                            <td>{{ $guru->nik }}</td>
                             <td>{{ $guru->jeniskelamin }}</td>
                             <td class="text-capitalize">{{ $guru->tempatlahir }}</td>
                             <td>{{ $guru->tanggallahir }}</td>
@@ -81,6 +83,12 @@
                                           <input type="text" class="form-control" placeholder="Masukkan NIP" name="nip" value="{{ $guru->nip }}" required>
                                           <div class="valid-feedback">Valid.</div>
                                           <div class="invalid-feedback">NIP tidak boleh kosong!</div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="nik">NIK</label>
+                                          <input type="text" class="form-control" placeholder="Masukkan NIK" name="nik" value="{{ $guru->nik }}" required>
+                                          <div class="valid-feedback">Valid.</div>
+                                          <div class="invalid-feedback">NIK tidak boleh kosong!</div> 
                                         </div>
                                         <div class="form-group">
                                           <label for="mapel_id">Pilih Mata Pelajaran</label>
@@ -225,6 +233,12 @@
                                       <div class="valid-feedback">Valid.</div>
                                       <div class="invalid-feedback">NIP tidak boleh kosong!</div>
                                     </div>
+                                    <div class="form-group">
+                                      <label for="nik">NIK</label>
+                                      <input type="number" class="form-control"  placeholder="Masukkan NIK" name="nik" required>
+                                      <div class="valid-feedback">Valid.</div>
+                                      <div class="invalid-feedback">NIK tidak boleh kosong!</div>
+                                    </div> 
                                     <div class="form-group">
                                       <label for="mapel_id">Pilih Mata Pelajaran</label>
                                       <select class="form-control" name="mapel_id" required>

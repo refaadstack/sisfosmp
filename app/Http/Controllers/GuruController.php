@@ -62,6 +62,7 @@ class GuruController extends Controller
         $user = new User;
         $user->role = 'guru';
         $user->name = $request->nama;
+        $user->username = $request->nik;
         $user->email = $request->email;
         $user->password = bcrypt('12345678');
         $user->remember_token = str::random(60);
@@ -109,8 +110,8 @@ class GuruController extends Controller
             'nama'           => 'required',
             'nip'            => 'nullable|unique:gurus,nip,'.$id,
             'jeniskelamin'   => 'required',
-            'mapel_id'        => 'required',
-            'nuptk'          => 'nullable|unique:gurus,nuptk,'.$id,
+            'mapel_id'       => 'required',
+            'nuptk'          => 'required|unique:gurus,nuptk,'.$id,
             'tempatlahir'    => 'required',
             'tanggallahir'   => 'required|date',
             'agama'          => 'required',
@@ -129,6 +130,11 @@ class GuruController extends Controller
             $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
             $guru->avatar = $request->file('avatar')->getClientOriginalName();
             $guru->save();
+        }
+        else if($request->has('nuptk')){
+            $username = User::find($guru->user_id);
+            $username->username = $request->nuptk;
+            $username->update();
         }
 
         return back()->withInfo('Data Berhasil Diubah');

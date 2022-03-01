@@ -24,6 +24,9 @@
                                 <b>NIP</b> <span class="float-right text-capitalize">{{ $guru->nip }}</span>
                             </li>
                             <li class="list-group-item">
+                                <b>NIK</b> <span class="float-right text-capitalize">{{ $guru->nik }}</span>
+                            </li>
+                            <li class="list-group-item">
                                 <b>Nomor Handphone</b> <span class="float-right text-capitalize">{{ $guru->no_hp}}</span>
                             </li>
                             <li class="list-group-item">

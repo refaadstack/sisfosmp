@@ -43,6 +43,15 @@ class JadwalController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'kelas_id' => 'required|unique:jadwals',
+            'guru_id' => 'required|unique:jadwals',
+            'mapel_id' => 'required|unique:jadwals',
+            'hari' => 'required|unique:jadwals',
+            'jam_mulai' => 'required|unique:jadwals',
+            'jam_selesai' => 'required|unique:jadwals',
+        ]);
+        
         $jadwal = new Jadwal();
         $jadwal->create($request->all());
         // dd($request->all());
