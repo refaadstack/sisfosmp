@@ -148,4 +148,29 @@
 </div>
 
 @endsection
+@section('javascript')
+<script>
+  $(document).ready(function(){
+    $('select[name=mapel_id]').on('change',function(){
+      let mataId = $(this).val();
+      if (mataId){
+        jQuery.ajax({
+          url : '/mapel/guru/'+mataId,
+          type: "GET",
+          dataType: "json",
+          success: function (response) {
+            $('select[name="guru_id"]').empty();
+            $('select[name="guru_id"]').append('<option value="">-- pilih Guru --</option>');
+              $.each(response, function (key, value) {
+                  $('select[name="guru_id"]').append('<option value="' +key+ '">' +value+ '</option>');
+              });
+          },
+        });
+      } else{
+        $('select[name="guru_id"]').append('<option value="">-- pilih Guru --</option>');
+      }
+    });
+  });
+</script>
+@endsection
 
