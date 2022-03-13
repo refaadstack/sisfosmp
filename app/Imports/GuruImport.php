@@ -19,6 +19,7 @@ class GuruImport implements ToModel
         $user = new User();
         $user->name = $row[2];
         $user->email = $row[11];
+        $user->username = $row[2];
         $user->role = 'guru';
         $user->password = bcrypt('rahasia');
         $user->remember_token = str::random(60);

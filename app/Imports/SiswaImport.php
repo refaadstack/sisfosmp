@@ -22,6 +22,7 @@ class SiswaImport implements ToModel
                $user = new User;
                $user->name = $row[1];
                $user->email = $row[8];
+               $user->username = $row[2];
                $user->role = 'siswa';
                $user->password = bcrypt('12345678');
                $user->remember_token = str::random(60);
